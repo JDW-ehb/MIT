@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+
+<body>
+
+<canvas id="background"></canvas>
+
+<div class="content">
+    <img src="/images/final.png" alt="Logo" width="500" height="500">
+
+    <h1></h1>
+
+
+    <a class="playbtn" th:href="@{/app}">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Start Now !
+    </a>
+
+
+</div>
+
+<script src="/js/home.js"></script>
+
+</body>
+</html>

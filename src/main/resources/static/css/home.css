@@ -1,0 +1,184 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: black;
+    overflow: hidden;
+}
+
+/* canvas = full-screen background */
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;   /* This helps positioning it under the content */
+}
+
+.content {
+    position: relative;
+    z-index: 1; /* This helps positioning it above the background */
+
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* vertical center */
+    align-items: center;     /* horizontal center */
+
+    color: white;
+    text-align: center;
+    background: transparent;
+}
+
+.content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+
+.playbtn {
+    position: relative;
+    display: inline-block;
+    padding: 25px 30px;
+    margin: 40px 0;
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.5s;
+    font-weight: 600;
+    letter-spacing: 4px;
+    overflow: hidden;
+}
+.playbtn:hover {
+    background: #ffffff;
+    color: #000000;
+    box-shadow: 0 0 5px #fff, 0 0 25px #fff, 0 0 50px #fff, 0 0 200px #fff;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+.playbtn span {
+    position: absolute;
+    display: block;
+}
+
+.playbtn span:nth-child(1) {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(90deg, transparent, #fff);
+    animation: animate1 1s linear infinite;
+}
+
+@keyframes animate1 {
+    0% {
+        left: -100%;
+    }
+    50%,
+    100% {
+        left: 100%;
+    }
+}
+
+.playbtn span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 10px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #fff);
+    animation: animate2 1s linear infinite;
+    animation-delay: 0.25s;
+}
+
+@keyframes animate2 {
+    0% {
+        top: -100%;
+    }
+    50%,
+    100% {
+        top: 100%;
+    }
+}
+
+.playbtn span:nth-child(3) {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(270deg, transparent, #fff);
+    animation: animate3 1s linear infinite;
+    animation-delay: 0.5s;
+}
+
+@keyframes animate3 {
+    0% {
+        right: -100%;
+    }
+    50%,
+    100% {
+        right: 100%;
+    }
+}
+
+.playbtn span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 10px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #fff);
+    animation: animate4 1s linear infinite;
+    animation-delay: 0.75s;
+}
+
+@keyframes animate4 {
+    0% {
+        bottom: -100%;
+    }
+    50%,
+    100% {
+        bottom: 100%;
+    }
+}
+
+
+/* Title */
+h1 {
+    position: relative;
+}
+
+/* create the pseudo-element */
+h1::after {
+    content: "";
+    white-space: pre;              /* preserves the space after “Most” */
+    animation: abomination1 2.5s steps(1, end) 1;
+    animation-fill-mode: forwards; /* keep the last frame */
+}
+
+
+
+@keyframes abomination1 {
+    0%  { content: "M"; }
+    4%  { content: "Mo"; }
+    8%  { content: "Mos"; }
+    12% { content: "Most"; }
+    16% { content: "Most "; }
+    20% { content: "Most I"; }
+    24% { content: "Most Im"; }
+    28% { content: "Most Imp"; }
+    32% { content: "Most Impo"; }
+    36% { content: "Most Impor"; }
+    40% { content: "Most Import"; }
+    44% { content: "Most Importa"; }
+    48% { content: "Most Importan"; }
+    52% { content: "Most Important"; }
+    56% { content: "Most Important "; }
+    60% { content: "Most Important T"; }
+    64% { content: "Most Important Ta"; }
+    68% { content: "Most Important Tas"; }
+    72% { content: "Most Important Task"; }
+    76% { content: "Most Important Tasks"; }
+    100% { content: "Most Important Tasks"; }
+}
+
