@@ -143,42 +143,4 @@ html, body {
 }
 
 
-/* Title */
-h1 {
-    position: relative;
-}
-
-/* create the pseudo-element */
-h1::after {
-    content: "";
-    white-space: pre;              /* preserves the space after “Most” */
-    animation: abomination1 2.5s steps(1, end) 1;
-    animation-fill-mode: forwards; /* keep the last frame */
-}
-
-
-
-@keyframes abomination1 {
-    0%  { content: "M"; }
-    4%  { content: "Mo"; }
-    8%  { content: "Mos"; }
-    12% { content: "Most"; }
-    16% { content: "Most "; }
-    20% { content: "Most I"; }
-    24% { content: "Most Im"; }
-    28% { content: "Most Imp"; }
-    32% { content: "Most Impo"; }
-    36% { content: "Most Impor"; }
-    40% { content: "Most Import"; }
-    44% { content: "Most Importa"; }
-    48% { content: "Most Importan"; }
-    52% { content: "Most Important"; }
-    56% { content: "Most Important "; }
-    60% { content: "Most Important T"; }
-    64% { content: "Most Important Ta"; }
-    68% { content: "Most Important Tas"; }
-    72% { content: "Most Important Task"; }
-    76% { content: "Most Important Tasks"; }
-    100% { content: "Most Important Tasks"; }
-}
 

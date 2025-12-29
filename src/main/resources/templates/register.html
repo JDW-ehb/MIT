@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+
+    <link rel="stylesheet" href="/css/register.css">
+</head>
+
+<body>
+
+<canvas id="background"></canvas>
+
+<div class="register-container">
+
+    <h2>Create Account</h2>
+
+    <form th:action="@{/register}" method="post">
+
+        <div class="input-group">
+            <input type="text" name="username" required placeholder=" ">
+            <label>Username</label>
+        </div>
+
+        <div class="input-group">
+            <input type="email" name="email" required placeholder=" ">
+            <label>Email</label>
+        </div>
+
+        <div class="input-group">
+            <input type="password" name="password" required placeholder=" ">
+            <label>Password</label>
+        </div>
+
+        <div class="input-group">
+            <select name="country" required>
+                <option value="">Select your country</option>
+                <option value="BE">Belgium</option>
+                <option value="NL">Netherlands</option>
+                <option value="FR">France</option>
+                <option value="DE">Germany</option>
+                <option value="US">United States</option>
+            </select>
+            <label>Country</label>
+        </div>
+
+        <div th:if="${error}" style="color:#ff6b6b; margin-bottom:10px;">
+            <span th:text="${error}"></span>
+        </div>
+
+        <button type="submit" class="register-btn">
+            <span></span><span></span><span></span><span></span>
+            Register
+        </button>
+
+    </form>
+
+    <a class="login-link" th:href="@{/login}">Already have an account?</a>
+
+</div>
+
+<script src="/js/background.js"></script>
+
+</body>
+</html>

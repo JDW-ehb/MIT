@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MIT Catalog</title>
+    <link rel="stylesheet" href="/css/catalog.css">
+</head>
+
+<body>
+<div class="top-actions">
+
+    <!-- Show CREATE when no objectives yet -->
+    <a class="neon-btn login-btn"
+       th:if="${!hasCreatedToday}"
+       th:href="@{/objectives/create}">
+        <span></span><span></span><span></span><span></span>
+        Create Today’s Objectives
+    </a>
+
+    <!-- Show EDIT when objectives exist -->
+    <a class="neon-btn register-btn"
+       th:if="${hasCreatedToday}"
+       th:href="@{/objectives/edit}">
+        <span></span><span></span><span></span><span></span>
+        Edit Today’s Objectives
+    </a>
+
+</div>
+
+<div class="filters">
+
+    <input type="text"
+           class="search-box"
+           placeholder="Search objectives…">
+
+    <div class="filter-row">
+
+        <input type="text"
+               class="filter"
+               placeholder="Filter by user…">
+
+        <select class="filter">
+            <option value="">Filter by status…</option>
+            <option value="TODO">To-do</option>
+            <option value="IN_PROGRESS">In progress</option>
+            <option value="DONE">Done</option>
+        </select>
+
+        <input type="date"
+               class="filter">
+
+    </div>
+
+</div>
+
+
+
+
+<div class="page">
+
+    <h1 th:text="${todayText}">Public Objectives</h1>
+
+    <div class="users">
+
+        <div class="user-card" th:each="user : ${users}">
+
+            <div class="avatar">
+                👤
+            </div>
+
+            <div class="username" th:text="${user.username}">Username</div>
+
+            <div class="objectives">
+
+                <div class="objective"
+                     th:each="obj : ${user.objectives}">
+                    <span th:text="${obj}">Objective text</span>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/js/filters.js"></script>
+</body>
+</html>

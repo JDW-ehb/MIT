@@ -1,0 +1,275 @@
+body {
+    margin: 0;
+    background: #0f0f0f;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.page {
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
+
+/* each user row */
+.user-card {
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 20px 25px;
+    background: #151515;
+    text-align: center;
+}
+
+
+/* cute stickman substitute */
+.avatar {
+    font-size: 40px;
+    text-align: center;
+}
+
+.username {
+    text-align: center;
+    font-size: 22px;
+    margin-top: 5px;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+}
+
+.objectives {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.objective {
+    background: #1f1f1f;
+    border: 1px solid #3a3a3a;
+
+    border-radius: 10px;
+    padding: 14px 18px;
+
+    text-align: center;
+    color: #eaeaea;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 55px;
+
+    transition: all .25s ease-in-out;
+}
+
+
+
+.objective:hover {
+    border-color: #4dabff;
+    box-shadow: 0 0 8px rgba(77, 171, 255, .6);
+    transform: translateY(-2px);
+}
+
+
+
+/* =========================
+   BUTTON BAR — TOP RIGHT
+   ========================= */
+.top-actions {
+    position: fixed;
+    top: 20px;
+    right: 25px;
+    display: flex;
+    gap: 20px;
+    z-index: 10;
+}
+
+/* =========================
+   BASE NEON BUTTON
+   ========================= */
+.neon-btn {
+    position: relative;
+    display: inline-block;
+
+    padding: 12px 28px;
+    color: #ffffff;
+
+    text-decoration: none;
+    text-transform: uppercase;
+
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 3px;
+
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    overflow: hidden;
+}
+
+/* animated borders */
+.neon-btn span {
+    position: absolute;
+    display: block;
+}
+
+/* animations */
+@keyframes animate1 { 0%{left:-100%} 50%,100%{left:100%} }
+@keyframes animate2 { 0%{top:-100%} 50%,100%{top:100%} }
+@keyframes animate3 { 0%{right:-100%} 50%,100%{right:100%} }
+@keyframes animate4 { 0%{bottom:-100%} 50%,100%{bottom:100%} }
+
+/* =========================
+   LOGIN — MATRIX GREEN
+   ========================= */
+.login-btn:hover {
+    background: rgba(0,255,156,0.2);
+    color: #00ff9c;
+    box-shadow:
+            0 0 5px #00ff9c,
+            0 0 25px #00ff9c,
+            0 0 50px #00ff9c,
+            0 0 200px #00ff9c;
+}
+
+.login-btn span:nth-child(1),
+.login-btn span:nth-child(2),
+.login-btn span:nth-child(3),
+.login-btn span:nth-child(4){
+    background: linear-gradient(90deg, transparent, #00ff9c);
+}
+
+.login-btn span:nth-child(1){
+    top:0; left:0; width:100%; height:10px;
+    animation: animate1 1s linear infinite;
+}
+
+.login-btn span:nth-child(2){
+    top:-100%; right:0; width:10px; height:100%;
+    animation: animate2 1s linear infinite;
+    animation-delay:.25s;
+}
+
+.login-btn span:nth-child(3){
+    bottom:0; right:0; width:100%; height:10px;
+    animation: animate3 1s linear infinite;
+    animation-delay:.5s;
+}
+
+.login-btn span:nth-child(4){
+    bottom:-100%; left:0; width:10px; height:100%;
+    animation: animate4 1s linear infinite;
+    animation-delay:.75s;
+}
+
+/* =========================
+   REGISTER — ELECTRIC BLUE
+   ========================= */
+.register-btn:hover {
+    background: rgba(77,171,255,0.2);
+    color: #4dabff;
+    box-shadow:
+            0 0 5px #4dabff,
+            0 0 25px #4dabff,
+            0 0 50px #4dabff,
+            0 0 200px #4dabff;
+}
+
+.register-btn span:nth-child(1),
+.register-btn span:nth-child(2),
+.register-btn span:nth-child(3),
+.register-btn span:nth-child(4){
+    background: linear-gradient(90deg, transparent, #4dabff);
+}
+
+.register-btn span:nth-child(1){
+    top:0; left:0; width:100%; height:10px;
+    animation: animate1 1s linear infinite;
+}
+
+.register-btn span:nth-child(2){
+    top:-100%; right:0; width:10px; height:100%;
+    animation: animate2 1s linear infinite;
+    animation-delay:.25s;
+}
+
+.register-btn span:nth-child(3){
+    bottom:0; right:0; width:100%; height:10px;
+    animation: animate3 1s linear infinite;
+    animation-delay:.5s;
+}
+
+.register-btn span:nth-child(4){
+    bottom:-100%; left:0; width:10px; height:100%;
+    animation: animate4 1s linear infinite;
+    animation-delay:.75s;
+}
+
+
+.users {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);   /* three across */
+    gap: 25px;                               /* spacing between cards */
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+
+/* Search bar & filters */
+.filters {
+    max-width: 900px;
+    margin: 20px auto 40px auto;
+}
+
+.search-box {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 1px solid #444;
+    background: #0f0f0f;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.search-box:focus {
+    border-color: #4dabff;
+    box-shadow: 0 0 8px #4dabff;
+}
+
+.filter-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.filter {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid #444;
+    background: #0f0f0f;
+    color: white;
+    font-size: 14px;
+    outline: none;
+}
+
+.filter:focus {
+    border-color: #00ff9c;
+    box-shadow: 0 0 6px #00ff9c;
+}
+
+/* Mobile responsive */
+@media(max-width: 600px){
+    .filter-row{
+        flex-direction: column;
+    }
+}

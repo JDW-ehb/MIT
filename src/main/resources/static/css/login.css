@@ -1,7 +1,248 @@
+/* --- Base Layout --- */
+
 html, body {
     margin: 0;
     padding: 0;
     height: 100%;
     background: black;
-    overflow: hidden;
+    color: white;
+    font-family: Arial, sans-serif;
 }
+
+#background {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+/* --- Login / Register Card --- */
+
+.login-container {
+    position: relative;
+    z-index: 1;
+    width: 380px;
+    padding: 40px 30px;
+    margin: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 0 25px rgba(255,255,255,0.1);
+}
+
+.login-container h2 {
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+}
+
+/* --- Inputs with floating label --- */
+
+.input-group {
+    position: relative;
+    margin: 25px 0;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    outline: none;
+    background: transparent;
+    border-bottom: 2px solid white;
+    color: white;
+    font-size: 16px;
+}
+
+.input-group label {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    color: #aaa;
+    pointer-events: none;
+    transform: translateY(-50%);
+    transition: 0.3s;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+    top: -5px;
+    font-size: 12px;
+    color: #fff;
+}
+
+/* --- Layout for buttons --- */
+
+.btn-group {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+/* --- Shared neon base --- */
+.neon-btn {
+    position: relative;
+    display: inline-block;
+    padding: 12px 28px;
+    color: white;
+    text-transform: uppercase;
+    background: transparent;
+    border: none;
+    letter-spacing: 3px;
+    font-size: 16px;
+    cursor: pointer;
+    overflow: hidden;
+    font-weight: 600;
+}
+
+/* Default hover glow — overridden per color */
+.neon-btn:hover {
+    background: white;
+    color: black;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+/* Border animation spans */
+.neon-btn span {
+    position: absolute;
+    display: block;
+}
+
+/* --- Keyframes --- */
+
+@keyframes animate1 { 0%{left:-100%;} 50%,100%{left:100%;} }
+@keyframes animate2 { 0%{top:-100%;} 50%,100%{top:100%;} }
+@keyframes animate3 { 0%{right:-100%;} 50%,100%{right:100%;} }
+@keyframes animate4 { 0%{bottom:-100%;} 50%,100%{bottom:100%;} }
+
+/* ===========================================================
+   LOGIN BUTTON — MATRIX GREEN
+   =========================================================== */
+
+.login-btn { border-color: #00ff9c; }
+
+.login-btn:hover {
+    box-shadow: 0 0 5px #00ff9c,
+    0 0 25px #00ff9c,
+    0 0 50px #00ff9c,
+    0 0 200px #00ff9c;
+}
+
+.login-btn span:nth-child(1),
+.login-btn span:nth-child(2),
+.login-btn span:nth-child(3),
+.login-btn span:nth-child(4) {
+    background: linear-gradient(90deg, transparent, #00ff9c);
+}
+
+.login-btn span:nth-child(1){
+    top:0;left:0;width:100%;height:10px;animation:animate1 1s linear infinite;
+}
+.login-btn span:nth-child(2){
+    top:-100%;right:0;width:10px;height:100%;animation:animate2 1s linear infinite;animation-delay:.25s;
+}
+.login-btn span:nth-child(3){
+    bottom:0;right:0;width:100%;height:10px;animation:animate3 1s linear infinite;animation-delay:.5s;
+}
+.login-btn span:nth-child(4){
+    bottom:-100%;left:0;width:10px;height:100%;animation:animate4 1s linear infinite;animation-delay:.75s;
+}
+
+/* ===========================================================
+   REGISTER BUTTON — ELECTRIC BLUE
+   =========================================================== */
+
+.register-btn { border-color: #4dabff; }
+
+.register-btn:hover {
+    box-shadow: 0 0 5px #4dabff,
+    0 0 25px #4dabff,
+    0 0 50px #4dabff,
+    0 0 200px #4dabff;
+}
+
+.register-btn span:nth-child(1),
+.register-btn span:nth-child(2),
+.register-btn span:nth-child(3),
+.register-btn span:nth-child(4) {
+    background: linear-gradient(90deg, transparent, #4dabff);
+}
+
+/* reuse same positioning & keyframes */
+.register-btn span:nth-child(1){top:0;left:0;width:100%;height:10px;animation:animate1 1s linear infinite;}
+.register-btn span:nth-child(2){top:-100%;right:0;width:10px;height:100%;animation:animate2 1s linear infinite;animation-delay:.25s;}
+.register-btn span:nth-child(3){bottom:0;right:0;width:100%;height:10px;animation:animate3 1s linear infinite;animation-delay:.5s;}
+.register-btn span:nth-child(4){bottom:-100%;left:0;width:10px;height:100%;animation:animate4 1s linear infinite;animation-delay:.75s;}
+
+@media (max-width: 450px) {
+    .login-container { width: 90%; }
+    .btn-group { flex-direction: column; gap: 15px; }
+}
+
+
+.actions {
+    margin-top: 25px;
+    display: flex;
+    gap: 40px;          /* space between them */
+    justify-content: center;
+    align-items: center;
+}
+
+/* BOTH behave the same */
+.login-btn,
+.register-btn {
+    position: relative;
+    display: inline-block;
+    padding: 25px 30px;
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    overflow: hidden;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+/* Hover glow — same logic */
+.login-btn:hover{
+    background: lightgreen;
+    color: #000000;
+    box-shadow: 0 0 5px #fff,
+    0 0 25px #fff,
+    0 0 50px #fff,
+    0 0 200px #fff;
+}
+
+
+.register-btn:hover {
+    background: lightblue;
+    color: #000000;
+    box-shadow: 0 0 5px #fff,
+    0 0 25px #fff,
+    0 0 50px #fff,
+    0 0 200px #fff;
+}
+
+/* Animated borders (your spans) */
+.login-btn span,
+.register-btn span {
+    position: absolute;
+    display: block;
+}
+
+/* --- color themes --- */
+.neon-green span { background: linear-gradient(90deg, transparent, #00ff9c); }
+.neon-blue  span { background: linear-gradient(90deg, transparent, #2f7fff); }
+
+/* Same keyframes you already have */
+@keyframes animate1 { 0%{left:-100%} 50%,100%{left:100%} }
+@keyframes animate2 { 0%{top:-100%} 50%,100%{top:100%} }
+@keyframes animate3 { 0%{right:-100%} 50%,100%{right:100%} }
+@keyframes animate4 { 0%{bottom:-100%} 50%,100%{bottom:100%} }
