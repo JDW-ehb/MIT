@@ -1,9 +1,14 @@
 package ehb.be.mit.controllers;
 
+import ehb.be.mit.services.CatalogService;
+import ehb.be.mit.services.ObjectiveService;
+import ehb.be.mit.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.security.Principal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -12,67 +17,36 @@ import java.util.Map;
 @Controller
 public class CatalogController {
 
+    private final CatalogService catalog;
+    private final UserService userService;
+    private final ObjectiveService objectives;
+
+    public CatalogController(CatalogService catalog, UserService userService, ObjectiveService objectives) {
+        this.catalog = catalog;
+        this.userService = userService;
+        this.objectives = objectives;
+    }
+
     @GetMapping("/catalog")
-    public String catalog(Model model) {
+    public String catalog(Model model, Principal principal) {
 
-        var users = List.of(
-                Map.of(
-                        "username", "Neo",
-                        "objectives", List.of("Learn Spring Boot", "Defeat procrastination", "Go to gym")
-                ),
-                Map.of(
-                        "username", "Trinity",
-                        "objectives", List.of("Hack the Matrix", "Drink coffee")
-                ),
-                Map.of(
-                        "username", "Morpheus",
-                        "objectives", List.of("Find The One", "Teach Kung Fu", "Meditate")
-                ),
-                Map.of(
-                        "username", "Morpheus",
-                        "objectives", List.of("Find The One", "Teach Kung Fu", "Meditate")
-                ),
-                Map.of(
-                        "username", "Morpheus",
-                        "objectives", List.of("Find The One", "Teach Kung Fu", "Meditate")
-                ),
-                Map.of(
-                        "username", "Morpheus",
-                        "objectives", List.of("Find The One", "Teach Kung Fu", "Meditate")
-                ),
-                Map.of(
-                        "username", "Morpheus",
-                        "objectives", List.of("Find The One", "Teach Kung Fu", "Meditate")
-                ),
-                Map.of(
-                        "username", "Morpheus",
-                        "objectives", List.of("Find The One", "Teach Kung Fu", "Meditate")
-                ),
-                Map.of(
-                        "username", "Morpheus",
-                        "objectives", List.of("Find The One", "Teach Kung Fu", "Meditate")
-                ),
-                Map.of(
-                        "username", "Morpheus",
-                        "objectives", List.of("Find The One", "Teach Kung Fu", "Meditate")
-                )
-        );
-
+        var users = catalog.loadUsersWithObjectives();
         model.addAttribute("users", users);
 
-        var today = LocalDateTime.now();
-        var formatted = today.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        var today = LocalDate.now();
+        model.addAttribute("todayText", "Today's objectives on: " + today);
 
-        // fake user id for demo
-        String userId = "demo-user-123";
+        var user = userService.findByUsername(principal.getName()).orElseThrow();
 
-        // pretend this is your service later
-        boolean hasCreatedToday = false;   // ← flip to false to test
+        long todayCount = objectives.countTodayForUser(user.getId());
 
-        model.addAttribute("hasCreatedToday", hasCreatedToday);
+        model.addAttribute("hasCreatedToday", todayCount >= 3);
+        model.addAttribute("remaining", Math.max(0, 3 - todayCount));
 
-        model.addAttribute("todayText", "Today's objectives on: " + formatted);
+        model.addAttribute("me", user.getUsername());
 
         return "catalog";
     }
+
 }
+

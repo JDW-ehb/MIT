@@ -19,7 +19,7 @@ html, body {
 
 /* --- Login / Register Card --- */
 
-.login-container {
+.objectives-container {
     position: relative;
     z-index: 1;
     width: 380px;
@@ -33,7 +33,7 @@ html, body {
     box-shadow: 0 0 25px rgba(255,255,255,0.1);
 }
 
-.login-container h2 {
+.objectives-container h2 {
     margin-bottom: 25px;
     letter-spacing: 2px;
 }
@@ -122,32 +122,32 @@ html, body {
    LOGIN BUTTON — MATRIX GREEN
    =========================================================== */
 
-.login-btn { border-color: #00ff9c; }
+.publish-btn { border-color: #00ff9c; }
 
-.login-btn:hover {
+.publish-btn:hover {
     box-shadow: 0 0 5px #00ff9c,
     0 0 25px #00ff9c,
     0 0 50px #00ff9c,
     0 0 200px #00ff9c;
 }
 
-.login-btn span:nth-child(1),
-.login-btn span:nth-child(2),
-.login-btn span:nth-child(3),
-.login-btn span:nth-child(4) {
+.publish-btn span:nth-child(1),
+.publish-btn span:nth-child(2),
+.publish-btn span:nth-child(3),
+.publish-btn span:nth-child(4) {
     background: linear-gradient(90deg, transparent, #00ff9c);
 }
 
-.login-btn span:nth-child(1){
+.publish-btn span:nth-child(1){
     top:0;left:0;width:100%;height:10px;animation:animate1 1s linear infinite;
 }
-.login-btn span:nth-child(2){
+.publish-btn span:nth-child(2){
     top:-100%;right:0;width:10px;height:100%;animation:animate2 1s linear infinite;animation-delay:.25s;
 }
-.login-btn span:nth-child(3){
+.publish-btn span:nth-child(3){
     bottom:0;right:0;width:100%;height:10px;animation:animate3 1s linear infinite;animation-delay:.5s;
 }
-.login-btn span:nth-child(4){
+.publish-btn span:nth-child(4){
     bottom:-100%;left:0;width:10px;height:100%;animation:animate4 1s linear infinite;animation-delay:.75s;
 }
 
@@ -155,30 +155,30 @@ html, body {
    REGISTER BUTTON — ELECTRIC BLUE
    =========================================================== */
 
-.register-btn { border-color: #4dabff; }
+.save-btn { border-color: #4dabff; }
 
-.register-btn:hover {
+.save-btn:hover {
     box-shadow: 0 0 5px #4dabff,
     0 0 25px #4dabff,
     0 0 50px #4dabff,
     0 0 200px #4dabff;
 }
 
-.register-btn span:nth-child(1),
-.register-btn span:nth-child(2),
-.register-btn span:nth-child(3),
-.register-btn span:nth-child(4) {
+.save-btn span:nth-child(1),
+.save-btn span:nth-child(2),
+.save-btn span:nth-child(3),
+.save-btn span:nth-child(4) {
     background: linear-gradient(90deg, transparent, #4dabff);
 }
 
 /* reuse same positioning & keyframes */
-.register-btn span:nth-child(1){top:0;left:0;width:100%;height:10px;animation:animate1 1s linear infinite;}
-.register-btn span:nth-child(2){top:-100%;right:0;width:10px;height:100%;animation:animate2 1s linear infinite;animation-delay:.25s;}
-.register-btn span:nth-child(3){bottom:0;right:0;width:100%;height:10px;animation:animate3 1s linear infinite;animation-delay:.5s;}
-.register-btn span:nth-child(4){bottom:-100%;left:0;width:10px;height:100%;animation:animate4 1s linear infinite;animation-delay:.75s;}
+.save-btn span:nth-child(1){top:0;left:0;width:100%;height:10px;animation:animate1 1s linear infinite;}
+.save-btn span:nth-child(2){top:-100%;right:0;width:10px;height:100%;animation:animate2 1s linear infinite;animation-delay:.25s;}
+.save-btn span:nth-child(3){bottom:0;right:0;width:100%;height:10px;animation:animate3 1s linear infinite;animation-delay:.5s;}
+.save-btn span:nth-child(4){bottom:-100%;left:0;width:10px;height:100%;animation:animate4 1s linear infinite;animation-delay:.75s;}
 
 @media (max-width: 450px) {
-    .login-container { width: 90%; }
+    .objectives-container { width: 90%; }
     .btn-group { flex-direction: column; gap: 15px; }
 }
 
@@ -192,8 +192,8 @@ html, body {
 }
 
 /* BOTH behave the same */
-.login-btn,
-.register-btn {
+.publish-btn,
+.save-btn {
     position: relative;
     display: inline-block;
     padding: 25px 30px;
@@ -211,7 +211,7 @@ html, body {
 }
 
 /* Hover glow — same logic */
-.login-btn:hover{
+.publish-btn:hover{
     background: lightgreen;
     color: #000000;
     box-shadow: 0 0 5px #fff,
@@ -221,7 +221,7 @@ html, body {
 }
 
 
-.register-btn:hover {
+.save-btn:hover {
     background: lightblue;
     color: #000000;
     box-shadow: 0 0 5px #fff,
@@ -231,8 +231,8 @@ html, body {
 }
 
 /* Animated borders (your spans) */
-.login-btn span,
-.register-btn span {
+.publish-btn span,
+.save-btn span {
     position: absolute;
     display: block;
 }

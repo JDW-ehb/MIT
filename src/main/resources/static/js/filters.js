@@ -1,45 +1,58 @@
-// --- Mocked data (replace later with backend JSON) ---
-const users = ["Neo","Trinity","Morpheus","Smith","Oracle"];
-const statuses = ["Todo","In Progress","Done","Abandoned"];
-const dates = ["2025-12-29","2025-12-30","2026-01-01"];
+const searchBox = document.getElementById("searchBox");
+const userFilter = document.getElementById("userFilter");
+const statusFilter = document.getElementById("statusFilter");
+const dateFilter = document.getElementById("dateFilter");
 
-function setupFilter(inputId, listId, data){
-    const input = document.getElementById(inputId);
-    const list = document.getElementById(listId);
+function applyFilters() {
 
-    function renderList(filter=""){
-        list.innerHTML = "";
-        data
-            .filter(x => x.toLowerCase().includes(filter.toLowerCase()))
-            .forEach(item=>{
-                const li = document.createElement("li");
-                li.textContent = item;
-                li.onclick = ()=>{
-                    input.value = item;
-                    list.classList.add("hidden");
-                }
-                list.appendChild(li);
+    const searchTerm = searchBox.value.toLowerCase();
+    const userTerm = userFilter.value.toLowerCase();
+    const statusTerm = statusFilter.value;
+    const dateTerm = dateFilter.value;   // yyyy-mm-dd
+
+    document
+        .querySelectorAll(".user-card")
+        .forEach(card => {
+
+            const username = card
+                .querySelector(".username")
+                .textContent.toLowerCase();
+
+            // --- USER FILTER ---
+            if (userTerm && !username.includes(userTerm)) {
+                card.style.display = "none";
+                return;
+            }
+
+            let anyVisibleObjective = false;
+
+            card.querySelectorAll(".objective").forEach(obj => {
+
+                const text = obj.textContent.toLowerCase();
+                const status = obj.dataset.status;
+                const date = obj.dataset.date;
+
+                let show = true;
+
+                // search filter
+                if (searchTerm && !text.includes(searchTerm)) show = false;
+
+                // status filter
+                if (statusTerm && status !== statusTerm) show = false;
+
+                // date filter
+                if (dateTerm && date !== dateTerm) show = false;
+
+                obj.style.display = show ? "flex" : "none";
+
+                if (show) anyVisibleObjective = true;
             });
-    }
 
-    input.addEventListener("focus", ()=>{
-        renderList(input.value);
-        list.classList.remove("hidden");
-    });
-
-    input.addEventListener("keyup", ()=>{
-        renderList(input.value);
-        list.classList.remove("hidden");
-    });
-
-    document.addEventListener("click", e=>{
-        if(!input.parentElement.contains(e.target)){
-            list.classList.add("hidden");
-        }
-    });
+            // hide user card if no visible objectives
+            card.style.display = anyVisibleObjective ? "block" : "none";
+        });
 }
 
-// initialize
-setupFilter("userFilter","userList",users);
-setupFilter("statusFilter","statusList",statuses);
-setupFilter("dateFilter","dateList",dates);
+// Listen for changes
+[searchBox, userFilter, statusFilter, dateFilter]
+    .forEach(input => input.addEventListener("input", applyFilters));

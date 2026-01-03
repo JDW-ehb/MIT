@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Today’s MIT</title>
+    <link rel="stylesheet" href="/css/creation.css">
+</head>
+
+<body>
+
+<canvas id="background"></canvas>
+
+<h1 class="page-title">Create Your 3 MITs</h1>
+
+<form th:action="@{/objectives/create}" method="post">
+
+    <div class="mit-wrapper">
+
+        <!-- CARD 1 -->
+        <div class="mit-card">
+            <h2>MIT #1</h2>
+
+            <input class="input" name="titles" type="text" placeholder="Title">
+            <textarea class="input" name="descriptions" placeholder="Description"></textarea>
+            <input class="input" name="deadlines" type="date">
+
+            <div class="status">Status: IN_PROGRESS</div>
+
+            <div class="actions">
+                <button type="submit" class="btn green">
+                    Publish
+                    <span></span><span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="mit-card">
+            <h2>MIT #2</h2>
+
+            <input class="input" name="titles" type="text" placeholder="Title">
+            <textarea class="input" name="descriptions" placeholder="Description"></textarea>
+            <input class="input" name="deadlines" type="date">
+
+            <div class="status">Status: IN_PROGRESS</div>
+
+            <div class="actions">
+                <button type="submit" class="btn green">
+                    Publish
+                    <span></span><span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="mit-card">
+            <h2>MIT #3</h2>
+
+            <input class="input" name="titles" type="text" placeholder="Title">
+            <textarea class="input" name="descriptions" placeholder="Description"></textarea>
+            <input class="input" name="deadlines" type="date">
+
+            <div class="status">Status: IN_PROGRESS</div>
+
+            <div class="actions">
+                <button type="submit" class="btn green">
+                    Publish
+                    <span></span><span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</form>
+
+
+<script src="/js/background.js"></script>
+</body>
+</html>

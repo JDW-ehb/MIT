@@ -25,10 +25,13 @@ public class Objective {
     @Column(length = 500)
     private String description;
 
-    // e.g. TODO / IN_PROGRESS / DONE
-    private String status;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private ObjectiveStatus status = ObjectiveStatus.IN_PROGRESS;
 
     private LocalDate deadline;
+
+    private LocalDate createdAt = LocalDate.now();
 
     @ManyToMany(mappedBy = "objectives")
     @JsonIgnore   // prevents infinite JSON loop later
@@ -36,7 +39,7 @@ public class Objective {
 
     public Objective() {}
 
-    public Objective(String title, String description, String status, LocalDate deadline) {
+    public Objective(String title, String description, ObjectiveStatus status, LocalDate deadline) {
         this.title = title;
         this.description = description;
         this.status = status;
@@ -65,15 +68,16 @@ public class Objective {
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
 
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
-
+    public ObjectiveStatus getStatus() { return status; }
+    public void setStatus(ObjectiveStatus status) {this.status = status;}
     public LocalDate getDeadline() { return deadline; }
     public void setDeadline(LocalDate deadline) { this.deadline = deadline; }
 
     public Set<User> getUsers() { return users; }
     public void setUsers(Set<User> users) { this.users = users; }
 
+    public LocalDate getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDate createdAt) { this.createdAt = createdAt; }
 
 
 }

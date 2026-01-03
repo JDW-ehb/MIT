@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit MITs</title>
+    <link rel="stylesheet" href="/css/edit.css">
+</head>
+
+<body>
+
+<canvas id="background"></canvas>
+
+<h1 class="page-title">
+    Edit MITs for <span th:text="${date}"></span>
+</h1>
+
+<div class="mit-wrapper">
+
+    <form th:action="@{/objectives/update}" method="post">
+
+        <!-- FLEX ROW OF CARDS -->
+        <div class="cards-row">
+
+            <div th:each="obj : ${objectives}" class="mit-card">
+
+                <input type="hidden" name="ids" th:value="${obj.id}"/>
+
+                <input class="input"
+                       type="text"
+                       name="titles"
+                       th:value="${obj.title}" />
+
+                <textarea class="input"
+                          name="descriptions"
+                          th:text="${obj.description}"></textarea>
+
+                <input class="input"
+                       type="date"
+                       name="deadlines"
+                       th:value="${obj.deadline}"/>
+
+            </div>
+
+        </div>
+
+        <!-- BUTTON ROW BELOW -->
+        <div class="actions">
+            <button class="btn green">
+                Save Changes
+                <span></span><span></span><span></span><span></span>
+            </button>
+        </div>
+
+    </form>
+
+</div>
+
+<script src="/js/background.js"></script>
+
+</body>
+</html>

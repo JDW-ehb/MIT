@@ -10,7 +10,7 @@
 <div class="top-actions">
 
     <!-- Show CREATE when no objectives yet -->
-    <a class="neon-btn login-btn"
+    <a class="neon-btn creating-btn"
        th:if="${!hasCreatedToday}"
        th:href="@{/objectives/create}">
         <span></span><span></span><span></span><span></span>
@@ -18,7 +18,7 @@
     </a>
 
     <!-- Show EDIT when objectives exist -->
-    <a class="neon-btn register-btn"
+    <a class="neon-btn hascreated-btn"
        th:if="${hasCreatedToday}"
        th:href="@{/objectives/edit}">
         <span></span><span></span><span></span><span></span>
@@ -29,29 +29,33 @@
 
 <div class="filters">
 
-    <input type="text"
+    <input id="searchBox"
+           type="text"
            class="search-box"
            placeholder="Search objectives…">
 
     <div class="filter-row">
 
-        <input type="text"
+        <input id="userFilter"
+               type="text"
                class="filter"
                placeholder="Filter by user…">
 
-        <select class="filter">
+        <select id="statusFilter" class="filter">
             <option value="">Filter by status…</option>
             <option value="TODO">To-do</option>
             <option value="IN_PROGRESS">In progress</option>
             <option value="DONE">Done</option>
         </select>
 
-        <input type="date"
+        <input id="dateFilter"
+               type="date"
                class="filter">
 
     </div>
 
 </div>
+
 
 
 
@@ -64,21 +68,35 @@
 
         <div class="user-card" th:each="user : ${users}">
 
-            <div class="avatar">
-                👤
-            </div>
+            <div class="date-row">
 
-            <div class="username" th:text="${user.username}">Username</div>
-
-            <div class="objectives">
-
-                <div class="objective"
-                     th:each="obj : ${user.objectives}">
-                    <span th:text="${obj}">Objective text</span>
+                <div class="date-badge"
+                     th:classappend="${user.today} ? ' today'">
+                    <span th:text="${user.dateLabel}">Today</span>
                 </div>
 
             </div>
+
+
+            <div class="avatar">👤</div>
+
+            <div class="username" th:text="${user.username}">Username</div>
+
+            <div class="objective"
+                 th:each="obj,iterStat : ${user.objectives}">
+
+                <span th:text="${obj.title}"></span>
+
+                <a class="edit-date"
+                   th:if="${iterStat.index == 0 and user.username == me}"
+                   th:href="@{/objectives/{id}/edit(id=${obj.id})}">
+                    ✏️
+                </a>
+
+            </div>
+
         </div>
+
 
     </div>
 
