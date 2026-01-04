@@ -102,7 +102,7 @@ html, body {
 .neon-btn:hover {
     background: white;
     color: black;
-    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+    -webkit-box-reflect: below 1px -webkit-linear-gradient(transparent, #0005);
 }
 
 /* Border animation spans */
