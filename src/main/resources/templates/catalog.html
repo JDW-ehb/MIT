@@ -4,28 +4,15 @@
     <meta charset="UTF-8">
     <title>MIT Catalog</title>
     <link rel="stylesheet" href="/css/catalog.css">
+    <link rel="stylesheet" href="/css/header.css">
+
 </head>
 
 <body>
-<div class="top-actions">
 
-    <!-- Show CREATE when no objectives yet -->
-    <a class="neon-btn creating-btn"
-       th:if="${!hasCreatedToday}"
-       th:href="@{/objectives/create}">
-        <span></span><span></span><span></span><span></span>
-        Create Today’s Objectives
-    </a>
+<div th:replace="~{fragments/header :: mainHeader}"></div>
 
-    <!-- Show EDIT when objectives exist -->
-    <a class="neon-btn hascreated-btn"
-       th:if="${hasCreatedToday}"
-       th:href="@{/objectives/edit}">
-        <span></span><span></span><span></span><span></span>
-        Edit Today’s Objectives
-    </a>
 
-</div>
 
 <div class="filters">
 
@@ -90,10 +77,9 @@
             </div>
 
 
-
-            <div class="avatar">
+            <a th:href="@{/profile/{username}(username=${user.username})}">
                 <img class="avatar" th:src="${user.profileImage}">
-            </div>
+            </a>
 
             <div class="username" th:text="${user.username}">Username</div>
 

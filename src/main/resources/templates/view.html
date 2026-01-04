@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <title>View MITs</title>
     <link rel="stylesheet" href="/css/view.css">
+    <link rel="stylesheet" href="/css/header.css">
+
 </head>
 
 <body>
 
-<canvas id="background"></canvas>
+<div th:replace="~{fragments/header :: mainHeader}"></div>
+
 
 <h1 class="page-title">
     MITs for <span th:text="${date}"></span>

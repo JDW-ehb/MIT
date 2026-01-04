@@ -19,10 +19,10 @@ public class UserController {
 
     @GetMapping("/me")
     public String myProfile(Principal principal){
-        return "redirect:/users/" + principal.getName();
+        return "redirect:/profile/" + principal.getName();
     }
 
-    @GetMapping("/users/{username}")
+    @GetMapping("/profile/{username}")
     public String profile(
             @PathVariable String username,
             Principal principal,

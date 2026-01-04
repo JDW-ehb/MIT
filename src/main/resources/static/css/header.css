@@ -1,0 +1,209 @@
+.main-header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    display:flex;
+    justify-content:space-between;   /* left vs right */
+    align-items:center;
+
+    padding:12px 20px;
+    background:#0c0c0f;
+    border-bottom:1px solid #222;
+    color:white;
+
+    z-index:1000;
+}
+
+/* group left side stuff */
+.left{
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.logo a{
+    color:#4af;
+    font-size:22px;
+    text-decoration:none;
+}
+
+.nav-links{
+    display:flex;
+    gap:18px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#ddd;
+}
+
+.nav-links a:hover{
+    color:#6cf;
+}
+
+
+/* group right side stuff */
+.right{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding-right: 35px;
+}
+
+/* reuse your neon button styles */
+.top-actions{
+    position: static;
+    display:flex;
+    gap:15px;
+}
+
+
+/* user bits */
+.user-box{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.avatar-small{
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.logout{
+    color:#f66;
+}
+
+/* Header creation edit button*/
+
+/* =========================
+   BUTTON BAR — TOP RIGHT
+   ========================= */
+
+
+/* =========================
+   BASE NEON BUTTON
+   ========================= */
+.neon-btn {
+    position: relative;
+    display: inline-block;
+
+    padding: 12px 28px;
+    color: #ffffff;
+
+    text-decoration: none;
+    text-transform: uppercase;
+
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 3px;
+
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    overflow: hidden;
+}
+
+/* animated borders */
+.neon-btn span {
+    position: absolute;
+    display: block;
+}
+
+/* animations */
+@keyframes animate1 { 0%{left:-100%} 50%,100%{left:100%} }
+@keyframes animate2 { 0%{top:-100%} 50%,100%{top:100%} }
+@keyframes animate3 { 0%{right:-100%} 50%,100%{right:100%} }
+@keyframes animate4 { 0%{bottom:-100%} 50%,100%{bottom:100%} }
+
+/* =========================
+   LOGIN — MATRIX GREEN
+   ========================= */
+.creating-btn:hover {
+    background: rgba(0,255,156,0.2);
+    color: #00ff9c;
+    box-shadow:
+            0 0 5px #00ff9c,
+            0 0 25px #00ff9c,
+            0 0 50px #00ff9c,
+            0 0 200px #00ff9c;
+}
+
+.creating-btn span:nth-child(1),
+.creating-btn span:nth-child(2),
+.creating-btn span:nth-child(3),
+.creating-btn span:nth-child(4){
+    background: linear-gradient(90deg, transparent, #00ff9c);
+}
+
+.creating-btn span:nth-child(1){
+    top:0; left:0; width:100%; height:10px;
+    animation: animate1 1s linear infinite;
+}
+
+.creating-btn span:nth-child(2){
+    top:-100%; right:0; width:10px; height:100%;
+    animation: animate2 1s linear infinite;
+    animation-delay:.25s;
+}
+
+.creating-btn span:nth-child(3){
+    bottom:0; right:0; width:100%; height:10px;
+    animation: animate3 1s linear infinite;
+    animation-delay:.5s;
+}
+
+.creating-btn span:nth-child(4){
+    bottom:-100%; left:0; width:10px; height:100%;
+    animation: animate4 1s linear infinite;
+    animation-delay:.75s;
+}
+
+/* =========================
+   REGISTER — ELECTRIC BLUE
+   ========================= */
+.hascreated-btn:hover {
+    background: rgba(77,171,255,0.2);
+    color: #4dabff;
+    box-shadow:
+            0 0 5px #4dabff,
+            0 0 25px #4dabff,
+            0 0 50px #4dabff,
+            0 0 200px #4dabff;
+}
+
+.hascreated-btn span:nth-child(1),
+.hascreated-btn span:nth-child(2),
+.hascreated-btn span:nth-child(3),
+.hascreated-btn span:nth-child(4){
+    background: linear-gradient(90deg, transparent, #4dabff);
+}
+
+.hascreated-btn span:nth-child(1){
+    top:0; left:0; width:100%; height:10px;
+    animation: animate1 1s linear infinite;
+}
+
+.hascreated-btn span:nth-child(2){
+    top:-100%; right:0; width:10px; height:100%;
+    animation: animate2 1s linear infinite;
+    animation-delay:.25s;
+}
+
+.hascreated-btn span:nth-child(3){
+    bottom:0; right:0; width:100%; height:10px;
+    animation: animate3 1s linear infinite;
+    animation-delay:.5s;
+}
+
+.hascreated-btn span:nth-child(4){
+    bottom:-100%; left:0; width:10px; height:100%;
+    animation: animate4 1s linear infinite;
+    animation-delay:.75s;
+}

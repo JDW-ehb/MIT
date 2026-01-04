@@ -3,9 +3,13 @@
 <head>
     <title th:text="${user.username} + ' — Profile'"></title>
     <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/header.css">
+
 </head>
 
 <body>
+
+<div th:replace="~{fragments/header :: mainHeader}"></div>
 
 <div class="profile-card">
 

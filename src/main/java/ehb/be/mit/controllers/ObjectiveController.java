@@ -172,6 +172,7 @@ public class ObjectiveController {
     @PostMapping("/update")
     public String update(
             @RequestParam List<UUID> ids,
+            @RequestParam List<String> titles,
             @RequestParam List<String> descriptions,
             @RequestParam List<LocalDate> deadlines,
             Principal principal
@@ -183,9 +184,11 @@ public class ObjectiveController {
 
             var obj = objectives.getById(ids.get(i));
 
+            // security check
             if(!obj.getUsers().contains(user))
                 continue;
 
+            obj.setTitle(titles.get(i));
             obj.setDescription(descriptions.get(i));
             obj.setDeadline(deadlines.get(i));
 
@@ -194,6 +197,7 @@ public class ObjectiveController {
 
         return "redirect:/catalog";
     }
+
 
 
 

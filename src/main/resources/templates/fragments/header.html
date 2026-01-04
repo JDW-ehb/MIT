@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<header th:fragment="mainHeader" class="main-header">
+
+    <div class="left">
+        <div class="logo">
+            <a th:href="@{/}">MIT</a>
+        </div>
+
+        <nav class="nav-links">
+            <a th:href="@{/catalog}">Catalog</a>
+            <a th:href="@{/groups}">Groups</a>
+            <a th:href="@{/subobjectives}">Sub-Objectives</a>
+        </nav>
+    </div>
+
+
+    <div class="right">
+
+        <!-- CREATE / EDIT -->
+        <div class="top-actions">
+
+            <a class="neon-btn creating-btn"
+               th:if="${!hasCreatedToday}"
+               th:href="@{/objectives/create}">
+                <span></span><span></span><span></span><span></span>
+                Create Today’s Objectives
+            </a>
+
+            <a class="neon-btn hascreated-btn"
+               th:if="${hasCreatedToday}"
+               th:href="@{/objectives/edit}">
+                <span></span><span></span><span></span><span></span>
+                Edit Today’s Objectives
+            </a>
+
+        </div>
+
+        <!-- USER INFO -->
+        <div class="user-box"
+             th:if="${#authorization.expression('isAuthenticated()')}">
+
+            <a th:href="@{/profile/{u}(u=${#authentication.name})}">
+                <img class="avatar-small"
+                     th:src="${#strings.isEmpty(profileImage)
+                             ? '/images/avatars/default.png'
+                             : profileImage}">
+            </a>
+
+            <span th:text="${#authentication.name}"></span>
+
+            <a class="logout" th:href="@{/logout}">Logout</a>
+        </div>
+
+    </div>
+
+</header>
+
+
+</body>
+</html>
