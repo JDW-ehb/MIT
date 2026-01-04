@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Group</title>
+
+    <link rel="stylesheet" href="/css/oldcss/header.css">
+    <link rel="stylesheet" href="/css/oldcss/creategroup.css">
+</head>
+
+<body>
+
+<div th:replace="~{fragments/header :: mainHeader}"></div>
+
+<div class="create-wrapper">
+
+    <h1>Create a New Group</h1>
+
+    <form th:action="@{/groups/create}" method="post" th:object="${group}">
+
+        <label>Name</label>
+        <input type="text" th:field="*{name}" required maxlength="60"/>
+
+        <label>Short Description</label>
+        <input type="text" th:field="*{shortDescription}" maxlength="140"/>
+
+        <label>Full Description</label>
+        <textarea th:field="*{description}" maxlength="400"></textarea>
+
+        <button type="submit">Create Group</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

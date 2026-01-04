@@ -23,17 +23,17 @@
         <div class="top-actions">
 
             <a class="neon-btn creating-btn"
-               th:if="${!hasCreatedToday}"
+               th:if="${!hasCreatedAnyToday}"
                th:href="@{/objectives/create}">
                 <span></span><span></span><span></span><span></span>
-                Create Today’s Objectives
+                Create Today’s MIT's
             </a>
 
             <a class="neon-btn hascreated-btn"
-               th:if="${hasCreatedToday}"
+               th:if="${hasCreatedAnyToday}"
                th:href="@{/objectives/edit}">
                 <span></span><span></span><span></span><span></span>
-                Edit Today’s Objectives
+                Edit Today’s MIT's
             </a>
 
         </div>

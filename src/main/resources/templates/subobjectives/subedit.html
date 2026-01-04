@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Sub Objective</title>
+    <link rel="stylesheet" href="/css/oldcss/header.css">
+    <link rel="stylesheet" href="/css/oldcss/subedit.css">
+</head>
+
+<body>
+
+<div th:replace="~{fragments/header :: mainHeader}"></div>
+
+<div class="edit-wrapper">
+
+    <h1>Edit Sub-Objective</h1>
+
+    <form th:action="@{/subobjectives/{id}/edit(id=${objective.id})}"
+          method="post">
+
+        <label>Title</label>
+        <input name="title" th:value="${objective.title}" required maxlength="100"/>
+
+        <label>Description</label>
+        <textarea name="description"
+                  maxlength="500"
+                  th:text="${objective.description}"></textarea>
+
+        <label>Deadline</label>
+        <input type="date"
+               name="deadline"
+               th:value="${objective.deadline}" required/>
+
+        <label>Assign to Group (optional)</label>
+        <select name="groupId">
+            <option value="">None</option>
+
+            <option th:each="g : ${myGroups}"
+                    th:value="${g.id}"
+                    th:selected="${objective.group != null && g.id == objective.group.id}"
+                    th:text="${g.name}">
+            </option>
+        </select>
+
+        <label>Category</label>
+        <select class="input" name="categoryId">
+            <option value="">None</option>
+
+            <option th:each="c : ${allCategories}"
+                    th:value="${c.id}"
+                    th:selected="${objective.category != null && c.id == objective.category.id}"
+                    th:text="${c.name}">
+            </option>
+        </select>
+
+        <label>Create New Category (optional)</label>
+        <input class="input"
+               name="newCategory"
+               placeholder="e.g. Life, Work, Study">
+
+        <button type="submit">Save</button>
+
+    </form>
+
+
+</div>
+
+</body>
+</html>

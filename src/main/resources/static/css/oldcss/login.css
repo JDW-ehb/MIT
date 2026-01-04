@@ -1,13 +1,15 @@
 /* --- Base Layout --- */
 
+
 html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background: black;
-    color: white;
-    font-family: Arial, sans-serif;
+    background:#0f0f0f;
+    color:white;
+    font-family:Arial, sans-serif;
 }
+
 
 #background {
     position: fixed;
@@ -27,7 +29,7 @@ html, body {
     margin: auto;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.6);
+    background:#151515e6;
     border-radius: 12px;
     text-align: center;
     box-shadow: 0 0 25px rgba(255,255,255,0.1);

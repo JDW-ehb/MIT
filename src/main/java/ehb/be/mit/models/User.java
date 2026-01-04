@@ -38,8 +38,6 @@ public class User {
 
 
     // --- RELATIONSHIPS ---
-
-    // USER ↔ OBJECTIVE (existing)
     @ManyToMany
     @JoinTable(
             name = "user_objectives",
@@ -49,7 +47,6 @@ public class User {
     private Set<Objective> objectives = new HashSet<>();
 
 
-    // USER ↔ GROUP (new)
     @ManyToMany
     @JoinTable(
             name = "user_group_objectives",

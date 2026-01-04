@@ -9,10 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.security.Principal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Map;
 
 @Controller
 public class CatalogController {
@@ -38,14 +34,18 @@ public class CatalogController {
 
         var user = userService.findByUsername(principal.getName()).orElseThrow();
 
-        long todayCount = objectives.countTodayForUser(user.getId());
+        long todayCount = objectives.countTodayMITsForUser(user.getId());
 
-        model.addAttribute("hasCreatedToday", todayCount >= 3);
+        boolean hasReachedDailyLimit = todayCount >= 3;
+
+        model.addAttribute("hasReachedDailyLimit", hasReachedDailyLimit);
         model.addAttribute("remaining", Math.max(0, 3 - todayCount));
+        model.addAttribute("categories", catalog.loadAllCategories());
+
 
         model.addAttribute("me", user.getUsername());
 
-        return "catalog";
+        return "MIT pages/catalog";
     }
 
 }

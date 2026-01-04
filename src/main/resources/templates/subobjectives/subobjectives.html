@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sub-Objectives</title>
+
+    <link rel="stylesheet" href="/css/oldcss/subobjectives.css">
+    <link rel="stylesheet" href="/css/oldcss/header.css">
+
+</head>
+
+<body>
+
+<div th:replace="fragments/header :: mainHeader"></div>
+
+
+<div class="sub-wrapper">
+
+    <div class="sub-header">
+        <h1>Sub-Objectives</h1>
+
+        <a class="create-btn" th:href="@{/subobjectives/create}">
+            + New Sub-Objective
+        </a>
+    </div>
+
+
+    <!-- EMPTY STATE -->
+    <div class="empty" th:if="${#lists.isEmpty(subs)}">
+        <p>No sub-objectives yet.
+            Let your brain hatch an idea and press that green button.</p>
+    </div>
+
+
+    <!-- GRID -->
+    <div class="subs-grid">
+
+        <div class="sub-card" th:each="s : ${subs}">
+
+            <div class="top">
+                <h2 th:text="${s.title}">Title</h2>
+
+                <span class="badge"
+                      th:text="${s.type}">
+            </span>
+            </div>
+
+            <p class="desc" th:text="${s.description}">
+                description…
+            </p>
+
+            <div class="meta">
+                <span th:text="${s.deadline}">2026-01-01</span>
+
+                <span th:text="${s.group != null ? s.group.name : 'No group'}">
+            </span>
+            </div>
+
+            <a class="view-btn"
+               th:href="@{/subobjectives/{id}/view(id=${s.id})}">
+                View
+            </a>
+
+            <!-- only show if user owns -->
+            <a class="edit-btn"
+               th:if="${#lists.contains(s.users, currentUser)}"
+               th:href="@{/subobjectives/{id}/edit(id=${s.id})}">
+                Edit
+            </a>
+
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+</div>
+
+</body>
+</html>

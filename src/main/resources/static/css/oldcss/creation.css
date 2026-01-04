@@ -1,5 +1,6 @@
 /* GLOBAL */
 body{
+    padding-top: 50px;
     margin:0;
     background:black;
     color:white;
@@ -35,22 +36,12 @@ body{
     z-index:1;
 
     display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:30px;
+    justify-content:center;
+    gap:40px;
 
     margin-top:60px;
     padding-bottom:60px;
 }
-
-.mit-wrapper form{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:30px;
-}
-
-
 
 .page-title,
 .mit-wrapper,
@@ -64,7 +55,7 @@ body{
 /* FLEX ITEMS (CARDS) */
 .mit-card{
     width:320px;
-    height: 530px;
+    height: 650px;
     padding:25px;
 
     background:rgba(0,0,0,0.8);
@@ -136,13 +127,15 @@ textarea.input{
 }
 
 /* RESPONSIVE — CARDS STACK */
-
-@media (max-width:1100px){
-    .cards-row{
+@media(max-width:1100px){
+    .mit-wrapper{
         flex-direction:column;
         align-items:center;
+        gap:25px;
+        margin-top:40px;
     }
 }
+
 
 /* ================================
    NEON BUTTON BASE
@@ -259,12 +252,3 @@ textarea.input{
     animation: animate4 1s linear infinite;
     animation-delay:.75s;
 }
-
-
-/* for button */
-.cards-row{
-    display:flex;
-    justify-content:center;
-    gap:40px;
-}
-

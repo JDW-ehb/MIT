@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${objective.title}">Sub-Objective</title>
+
+    <link rel="stylesheet" href="/css/oldcss/header.css">
+    <link rel="stylesheet" href="/css/oldcss/subview.css">
+</head>
+
+<body>
+
+<div th:replace="~{fragments/header :: mainHeader}"></div>
+
+<div class="view-wrapper">
+
+    <div class="card">
+
+        <div class="top-row">
+            <span class="badge">SUB-OBJECTIVE</span>
+
+            <a th:href="@{/templates/subobjectives}" class="back-btn">
+                ← Back
+            </a>
+        </div>
+
+        <h1 th:text="${objective.title}">Title</h1>
+
+        <p class="desc"
+           th:text="${objective.description}">
+            Description…
+        </p>
+
+        <div class="meta">
+            <div>
+                <strong>Deadline:</strong>
+                <span th:text="${objective.deadline}">2026-01-05</span>
+            </div>
+
+            <div>
+                <strong>Group:</strong>
+                <span th:text="${objective.group != null ?
+                                objective.group.name :
+                                'None'}">
+                </span>
+            </div>
+
+            <div>
+                <strong>Created:</strong>
+                <span th:text="${objective.createdAt}"></span>
+            </div>
+        </div>
+
+        <div class="owners">
+            <strong>Members:</strong>
+
+            <span class="user"
+                  th:each="u : ${objective.users}"
+                  th:text="${u.username}">
+            </span>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -5,6 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.http.HttpStatus;
+
 
 import java.security.Principal;
 
@@ -30,7 +33,8 @@ public class UserController {
     ){
 
         var user = users.findByUsername(username)
-                .orElseThrow();
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
 
         boolean isOwner =
                 principal != null &&
@@ -39,6 +43,6 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("isOwner", isOwner);
 
-        return "profile";
+        return "other pages/profile";
     }
 }

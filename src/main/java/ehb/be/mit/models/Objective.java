@@ -2,12 +2,9 @@ package ehb.be.mit.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.antlr.v4.runtime.misc.NotNull;
 
-import java.rmi.server.UID;
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -29,6 +26,11 @@ public class Objective {
     @Column(nullable = false)
     private ObjectiveStatus status = ObjectiveStatus.IN_PROGRESS;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private ObjectiveType type = ObjectiveType.SUBOBJECTIVE;
+
+
     private LocalDate deadline;
 
     private LocalDate createdAt = LocalDate.now();
@@ -36,6 +38,15 @@ public class Objective {
     @ManyToMany(mappedBy = "objectives")
     @JsonIgnore   // prevents infinite JSON loop later
     private Set<User> users = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Group group;
+
+    @ManyToOne
+    @JoinColumn(name="category_id")
+    private Category category;
+
 
     public Objective() {}
 
@@ -75,6 +86,16 @@ public class Objective {
 
     public Set<User> getUsers() { return users; }
     public void setUsers(Set<User> users) { this.users = users; }
+
+    public ObjectiveType getType() { return type; }
+    public void setType(ObjectiveType type) { this.type = type; }
+
+
+    public Group getGroup() {return group;}
+    public void setGroup(Group group) {this.group = group;}
+
+    public Category getCategory() { return category; }
+    public void setCategory(Category category) { this.category = category; }
 
     public LocalDate getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDate createdAt) { this.createdAt = createdAt; }

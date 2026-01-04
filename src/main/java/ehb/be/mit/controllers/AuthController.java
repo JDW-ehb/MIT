@@ -18,12 +18,12 @@ public class AuthController {
 
     @GetMapping("/login")
     public String login() {
-        return "login"; // loads login.html from templates dir
+        return "authentication/login"; // loads login.html from templates dir
     }
 
     @GetMapping("/register")
     public String registerForm() {
-        return "register";
+        return "authentication/register";
     }
 
     @PostMapping("/register")
@@ -39,7 +39,7 @@ public class AuthController {
         }
         catch (Exception e) {
             model.addAttribute("error", e.getMessage());
-            return "register";
+            return "authentication/register";
         }
     }
 }

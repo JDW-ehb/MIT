@@ -1,0 +1,162 @@
+/* ===========================
+   GLOBAL
+   =========================== */
+
+body{
+    margin:0;
+    padding-top:70px;
+    background:#0f0f0f;
+    color:white;
+    font-family:Arial, sans-serif;
+}
+
+
+/* ===========================
+   CONTAINER
+   =========================== */
+
+.group-container{
+    max-width:900px;
+    margin:40px auto;
+    padding:0 15px;
+}
+
+
+/* ===========================
+   HEADER
+   =========================== */
+
+.group-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:22px;
+}
+
+.group-header h1{
+    margin:0;
+    letter-spacing:2px;
+}
+
+.short{
+    margin-top:6px;
+    color:#bbb;
+}
+
+
+/* ===========================
+   OWNER BADGE
+   =========================== */
+
+.owner-box{
+    padding:8px 12px;
+    border-radius:12px;
+
+    background:#151515;
+    border:1px solid #333;
+
+    box-shadow:0 0 10px rgba(0,0,0,.45);
+}
+
+
+/* ===========================
+   DESCRIPTION PANEL
+   =========================== */
+
+.group-description{
+    padding:16px;
+    border-radius:14px;
+
+    background:#151515;
+    border:1px solid #333;
+
+    box-shadow:0 0 12px rgba(0,0,0,.45);
+    margin-bottom:30px;
+
+    transition:all .25s ease-in-out;
+}
+
+.group-description:hover{
+    border-color:#4dabff;
+    box-shadow:0 0 12px rgba(77,171,255,.6);
+}
+
+
+/* ===========================
+   SECTION TITLE
+   =========================== */
+
+h2{
+    margin-top:20px;
+    letter-spacing:1px;
+}
+
+
+/* ===========================
+   OBJECTIVES LIST
+   =========================== */
+
+.objective-list{
+    margin-top:15px;
+}
+
+
+/* ===========================
+   OBJECTIVE CARD
+   =========================== */
+
+.objective-card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:12px 16px;
+    margin-bottom:12px;
+
+    border-radius:12px;
+    border:1px solid #333;
+    background:#1a1a1a;
+
+    box-shadow:0 0 10px rgba(0,0,0,.35);
+    transition:all .25s ease-in-out;
+}
+
+.objective-card:hover{
+    border-color:#4dabff;
+    box-shadow:0 0 12px rgba(77,171,255,.6);
+    transform:translateY(-2px);
+}
+
+.objective-card h3{
+    margin:0;
+    letter-spacing:.5px;
+}
+
+
+/* ===========================
+   STATUS LABEL
+   =========================== */
+
+.status{
+    padding:6px 12px;
+    border-radius:12px;
+
+    background:#0c0c0f;
+    border:1px solid #444;
+
+    font-size:0.9rem;
+    letter-spacing:1px;
+
+    color:#e4e4e4;
+    box-shadow:0 0 6px rgba(0,0,0,.4);
+}
+
+
+/* ===========================
+   EMPTY STATE
+   =========================== */
+
+.empty{
+    opacity:0.75;
+    font-style:italic;
+}

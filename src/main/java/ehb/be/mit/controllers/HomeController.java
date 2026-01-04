@@ -11,7 +11,7 @@ public class HomeController {
     public String home(Model model) {
         model.addAttribute("title", "Most Important Tasks");
 
-        return "home";   // loads home.html from templates dir
+        return "other pages/home";   // loads home.html from templates dir
     }
 
 

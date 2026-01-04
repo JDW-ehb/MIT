@@ -1,20 +1,19 @@
 package ehb.be.mit.services;
 
 import ehb.be.mit.models.User;
-import ehb.be.mit.repositories.UserRepository;
+import ehb.be.mit.repositories.IUserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @Service
 public class UserService {
 
-    private final UserRepository repo;
+    private final IUserRepository repo;
     private final PasswordEncoder encoder;
 
-    public UserService(UserRepository repo, PasswordEncoder encoder) {
+    public UserService(IUserRepository repo, PasswordEncoder encoder) {
         this.repo = repo;
         this.encoder = encoder;
     }

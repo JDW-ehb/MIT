@@ -1,6 +1,6 @@
 package ehb.be.mit.services;
 
-import ehb.be.mit.repositories.UserRepository;
+import ehb.be.mit.repositories.IUserRepository;
 import ehb.be.mit.security.MyUserDetails;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 
-    private final UserRepository repo;
+    private final IUserRepository repo;
 
-    public MyUserDetailsService(UserRepository repo) {
+    public MyUserDetailsService(IUserRepository repo) {
         this.repo = repo;
     }
 

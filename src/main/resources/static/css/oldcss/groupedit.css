@@ -1,0 +1,147 @@
+/* ===========================
+   GLOBAL
+   =========================== */
+
+body{
+    margin:0;
+    padding-top:70px;
+    background:#0f0f0f;
+    color:white;
+    font-family:Arial, sans-serif;
+}
+
+
+/* ===========================
+   WRAPPER
+   =========================== */
+
+.edit-wrapper{
+    max-width:800px;
+    margin:40px auto;
+    padding:0 15px;
+}
+
+h1{
+    letter-spacing:2px;
+}
+
+
+/* ===========================
+   FORM CONTAINER
+   =========================== */
+
+form{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+
+    margin-top:20px;
+    padding:22px;
+
+    background:#151515;
+    border:1px solid #333;
+    border-radius:14px;
+
+    box-shadow:0 0 12px rgba(0,0,0,.45);
+    transition:all .25s ease-in-out;
+}
+
+form:hover{
+    border-color:#4dabff;
+    box-shadow:0 0 12px rgba(77,171,255,.6);
+}
+
+
+/* ===========================
+   LABELS
+   =========================== */
+
+label{
+    font-size:0.9rem;
+    opacity:0.85;
+    letter-spacing:.5px;
+}
+
+
+/* ===========================
+   INPUTS
+   =========================== */
+
+input,
+textarea{
+    padding:12px;
+    border-radius:12px;
+
+    border:1px solid #444;
+    background:#0c0c0f;
+    color:white;
+
+    font-size:15px;
+    outline:none;
+
+    transition:all .25s ease-in-out;
+}
+
+input:focus,
+textarea:focus{
+    border-color:#00ff9c;
+    box-shadow:0 0 8px rgba(0,255,156,.6);
+}
+
+
+/* ===========================
+   BUTTON BAR
+   =========================== */
+
+.actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:14px;
+    margin-top:10px;
+}
+
+
+/* cancel — cool blue accent */
+.cancel-btn{
+    padding:10px 16px;
+    text-decoration:none;
+
+    border-radius:12px;
+    background:#1f1f1f;
+    border:1px solid #4dabff;
+
+    color:#4dabff;
+    font-weight:bold;
+
+    box-shadow:0 0 10px rgba(77,171,255,.5);
+    transition:all .25s ease-in-out;
+}
+
+.cancel-btn:hover{
+    color:white;
+    background:#222;
+    box-shadow:0 0 16px rgba(77,171,255,.9);
+    transform:translateY(-1px);
+}
+
+
+/* save — neon green hero */
+.save-btn{
+    padding:10px 20px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+
+    background:#00ff9c;
+    color:black;
+    font-weight:bold;
+    letter-spacing:1px;
+
+    box-shadow:0 0 14px rgba(0,255,156,.8);
+    transition:all .25s ease-in-out;
+}
+
+.save-btn:hover{
+    box-shadow:0 0 22px rgba(0,255,156,1);
+    transform:translateY(-1px);
+}

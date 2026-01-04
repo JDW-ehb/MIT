@@ -2,13 +2,15 @@ const searchBox = document.getElementById("searchBox");
 const userFilter = document.getElementById("userFilter");
 const statusFilter = document.getElementById("statusFilter");
 const dateFilter = document.getElementById("dateFilter");
+const categoryFilter = document.getElementById("categoryFilter"); // NEW
 
 function applyFilters() {
 
     const searchTerm = searchBox.value.toLowerCase();
     const userTerm = userFilter.value.toLowerCase();
     const statusTerm = statusFilter.value;
-    const dateTerm = dateFilter.value;   // yyyy-mm-dd
+    const dateTerm = dateFilter.value;
+    const categoryTerm = categoryFilter ? categoryFilter.value.toLowerCase() : "";
 
     document
         .querySelectorAll(".user-card")
@@ -18,7 +20,6 @@ function applyFilters() {
                 .querySelector(".username")
                 .textContent.toLowerCase();
 
-            // --- USER FILTER ---
             if (userTerm && !username.includes(userTerm)) {
                 card.style.display = "none";
                 return;
@@ -31,28 +32,37 @@ function applyFilters() {
                 const text = obj.textContent.toLowerCase();
                 const status = obj.dataset.status;
                 const date = obj.dataset.date;
+                const category = (obj.dataset.category || "").toLowerCase();
 
                 let show = true;
 
-                // search filter
-                if (searchTerm && !text.includes(searchTerm)) show = false;
+                if (searchTerm &&
+                    !text.includes(searchTerm) &&
+                    !category.includes(searchTerm))
+                    show = false;
 
-                // status filter
-                if (statusTerm && status !== statusTerm) show = false;
+                if (statusTerm && status !== statusTerm)
+                    show = false;
 
-                // date filter
-                if (dateTerm && date !== dateTerm) show = false;
+                if (dateTerm && date !== dateTerm)
+                    show = false;
+
+                if (categoryTerm && category !== categoryTerm)
+                    show = false;
 
                 obj.style.display = show ? "flex" : "none";
 
                 if (show) anyVisibleObjective = true;
             });
 
-            // hide user card if no visible objectives
             card.style.display = anyVisibleObjective ? "block" : "none";
         });
 }
 
-// Listen for changes
-[searchBox, userFilter, statusFilter, dateFilter]
-    .forEach(input => input.addEventListener("input", applyFilters));
+[
+    searchBox,
+    userFilter,
+    statusFilter,
+    dateFilter,
+    categoryFilter
+].forEach(input => input && input.addEventListener("input", applyFilters));

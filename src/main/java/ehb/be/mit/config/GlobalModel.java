@@ -18,8 +18,8 @@ public class GlobalModel {
         this.users = users;
     }
 
-    @ModelAttribute("hasCreatedToday")
-    public Boolean hasCreatedToday(Principal principal){
+    @ModelAttribute("hasCreatedAnyToday")
+    public Boolean hasCreatedAnyToday(Principal principal){
 
         if(principal == null)
             return false;
@@ -27,6 +27,7 @@ public class GlobalModel {
         var user = users.findByUsername(principal.getName())
                 .orElseThrow();
 
-        return objectives.countTodayForUser(user.getId()) > 0;
+        return objectives.countTodayMITsForUser(user.getId()) > 0;
     }
+
 }

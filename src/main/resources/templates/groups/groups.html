@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Groups</title>
+
+    <link rel="stylesheet" href="/css/oldcss/header.css">
+    <link rel="stylesheet" href="/css/oldcss/groups.css">
+</head>
+
+<body>
+
+<div th:replace="~{fragments/header :: mainHeader}"></div>
+
+<div class="groups-wrapper">
+
+    <div class="groups-header">
+
+        <h1>Groups</h1>
+
+        <!-- Only show if logged in -->
+        <a class="create-group-btn"
+           th:if="${#authorization.expression('isAuthenticated()')}"
+           th:href="@{/groups/create}">
+            +
+        </a>
+
+    </div>
+
+
+    <div class="groups-grid">
+
+        <div class="group-card"
+             th:each="g : ${groups}">
+
+            <h2 th:text="${g.name}">Group Name</h2>
+
+            <p th:text="${g.shortDescription}">Short description…</p>
+
+            <a class="open-btn"
+               th:href="@{/groups/{id}(id=${g.id})}">
+                View Group
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

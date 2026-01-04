@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Today’s MIT</title>
+
+    <link rel="stylesheet" href="/css/oldcss/creation.css">
+    <link rel="stylesheet" href="/css/oldcss/header.css">
+</head>
+
+<body>
+
+<div th:replace="~{fragments/header :: mainHeader}"></div>
+
+<h1 class="page-title">Create Your 3 MITs</h1>
+
+<form th:action="@{/objectives/create}" method="post">
+
+    <div class="mit-wrapper">
+
+        <div class="mit-card" th:each="obj, i : ${slots}">
+
+            <h2 th:text="'MIT #' + (${i.index} + 1)"></h2>
+
+            <input class="input"
+                   name="titles"
+                   type="text"
+                   placeholder="Title"
+                   th:value="${obj.title}" />
+
+            <textarea class="input"
+                      name="descriptions"
+                      placeholder="Description"
+                      th:text="${obj.description}">
+            </textarea>
+
+
+            <label>Status</label>
+
+            <select class="input" name="statuses">
+
+                <option value="TODO"
+                        th:selected="${obj.status == T(ehb.be.mit.models.ObjectiveStatus).TODO}">
+                    To-do
+                </option>
+
+                <option value="IN_PROGRESS"
+                        th:selected="${obj.status == null
+                          or obj.status == T(ehb.be.mit.models.ObjectiveStatus).IN_PROGRESS}">
+                    In progress
+                </option>
+
+                <option value="DONE"
+                        th:selected="${obj.status == T(ehb.be.mit.models.ObjectiveStatus).DONE}">
+                    Done
+                </option>
+
+            </select>
+
+
+            <!-- CATEGORY SELECT -->
+            <label>Category</label>
+
+            <select class="input" name="categoryIds">
+                <option value="">None</option>
+                <option th:each="c : ${allCategories}"
+                        th:value="${c.id}"
+                        th:text="${c.name}">
+                </option>
+            </select>
+
+            <!-- NEW CATEGORY -->
+            <label>Create New Category (optional)</label>
+            <input class="input"
+                   name="newCategories"
+                   placeholder="e.g. Work, Study, Health" />
+
+        </div>
+
+    </div>
+
+
+    <div class="actions">
+
+        <button type="submit" class="btn green">
+            Publish
+            <span></span><span></span><span></span><span></span>
+        </button>
+
+        <a href="/catalog" class="btn red">
+            Cancel
+            <span></span><span></span><span></span><span></span>
+        </a>
+
+    </div>
+
+</form>
+
+<script src="/js/background.js"></script>
+
+</body>
+
+</html>

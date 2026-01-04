@@ -35,12 +35,22 @@ body{
     z-index:1;
 
     display:flex;
-    justify-content:center;
-    gap:40px;
+    flex-direction:column;
+    align-items:center;
+    gap:30px;
 
     margin-top:60px;
     padding-bottom:60px;
 }
+
+.mit-wrapper form{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:30px;
+}
+
+
 
 .page-title,
 .mit-wrapper,
@@ -126,15 +136,13 @@ textarea.input{
 }
 
 /* RESPONSIVE — CARDS STACK */
-@media(max-width:1100px){
-    .mit-wrapper{
+
+@media (max-width:1100px){
+    .cards-row{
         flex-direction:column;
         align-items:center;
-        gap:25px;
-        margin-top:40px;
     }
 }
-
 
 /* ================================
    NEON BUTTON BASE
@@ -251,3 +259,39 @@ textarea.input{
     animation: animate4 1s linear infinite;
     animation-delay:.75s;
 }
+
+
+/* for button */
+.cards-row{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+}
+
+
+/*status */
+.status-badge{
+    display:inline-block;
+    margin-bottom:12px;
+    padding:6px 12px;
+    border-radius:10px;
+    font-weight:bold;
+    font-size:14px;
+}
+
+/* colours by meaning */
+.TODO{
+    background:#ff7675;
+    color:#000;
+}
+
+.IN_PROGRESS{
+    background:#ffeaa7;
+    color:#000;
+}
+
+.DONE{
+    background:#55efc4;
+    color:#000;
+}
+

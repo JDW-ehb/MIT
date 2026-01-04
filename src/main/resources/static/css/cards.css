@@ -1,0 +1,116 @@
+/* =========================================
+   REUSABLE CARD + GRID SYSTEM
+   ========================================= */
+
+/* ---------- CARD GRID WRAPPERS ---------- */
+
+/* 3-column responsive grid (Catalog, Groups, etc.) */
+.card-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+/* 2-column grid when needed */
+.card-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    max-width: 1000px;
+    margin: 30px auto;
+}
+
+/* Centered single-column stack */
+.card-stack {
+    max-width: 800px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* ---------- CARD HOVER FEEDBACK ---------- */
+
+.card:hover{
+    border-color:#4dabff;
+    box-shadow:0 0 12px #4dabff55;
+}
+
+/* ---------- CARD HEADER ---------- */
+
+.card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+}
+
+.card-title{
+    margin:0;
+    font-size:20px;
+    letter-spacing:1px;
+}
+
+.card-subtitle{
+    opacity:.8;
+    margin-top:4px;
+}
+
+/* ---------- CARD CONTENT ---------- */
+
+.card-body{
+    margin-top:8px;
+    opacity:.95;
+    line-height:1.5;
+}
+
+/* metadata rows */
+.card-meta{
+    margin-top:14px;
+    font-size:13px;
+    opacity:.8;
+}
+
+.card-meta div{
+    margin-bottom:5px;
+}
+
+/* ---------- BADGES ---------- */
+
+.card-badge{
+    padding:6px 10px;
+    border-radius:10px;
+    font-size:12px;
+    font-weight:bold;
+    background:#1d1d1d;
+    border:1px solid #333;
+}
+
+.card-badge.TODO{ background:#ff7675; color:black; }
+.card-badge.IN_PROGRESS{ background:#ffeaa7; color:black; }
+.card-badge.DONE{ background:#55efc4; color:black; }
+
+/* ---------- CARD ACTIONS ---------- */
+
+.card-actions{
+    margin-top:14px;
+    display:flex;
+    gap:12px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media(max-width:1000px){
+    .card-grid-3{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width:700px){
+    .card-grid-3,
+    .card-grid-2{
+        grid-template-columns: 1fr;
+    }
+}

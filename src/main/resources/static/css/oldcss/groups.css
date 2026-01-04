@@ -1,0 +1,155 @@
+/* ===========================
+   GLOBAL
+   =========================== */
+
+body{
+    margin:0;
+    padding-top:70px;
+    background:#0f0f0f;
+    color:white;
+    font-family:Arial, sans-serif;
+}
+
+
+/* ===========================
+   WRAPPER
+   =========================== */
+
+.groups-wrapper{
+    max-width:1000px;
+    margin:40px auto;
+    padding:0 20px;
+}
+
+
+/* ===========================
+   HEADER
+   =========================== */
+
+.groups-header{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.groups-header h1{
+    margin:0;
+    letter-spacing:2px;
+}
+
+
+/* ===========================
+   CREATE GROUP BUTTON
+   =========================== */
+
+.create-group-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:44px;
+    height:44px;
+
+    border-radius:50%;
+    border:1px solid #4dabff;
+
+    color:#4dabff;
+    font-size:26px;
+    font-weight:bold;
+    text-decoration:none;
+
+    box-shadow:0 0 8px rgba(77,171,255,.35);
+    transition:all .25s ease-in-out;
+}
+
+.create-group-btn:hover{
+    background:#1f1f1f;
+    color:white;
+    border-color:#4dabff;
+
+    box-shadow:0 0 16px rgba(77,171,255,.9);
+    transform:translateY(-1px);
+}
+
+
+/* ===========================
+   GRID
+   =========================== */
+
+.groups-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:22px;
+}
+
+
+/* ===========================
+   GROUP CARD
+   =========================== */
+
+.group-card{
+    position:relative;
+
+    background:#151515;
+    border:1px solid #333;
+    border-radius:14px;
+    padding:18px;
+
+    box-shadow:0 0 12px rgba(0,0,0,.45);
+    transition:all .25s ease-in-out;
+}
+
+.group-card:hover{
+    border-color:#4dabff;
+    box-shadow:0 0 12px rgba(77,171,255,.6);
+    transform:translateY(-2px);
+}
+
+.group-card h2{
+    margin-top:0;
+    letter-spacing:1px;
+}
+
+
+/* ===========================
+   OPEN BUTTON — neon green hero
+   =========================== */
+
+.open-btn{
+    display:inline-block;
+    margin-top:12px;
+
+    padding:9px 16px;
+    border-radius:12px;
+
+    background:#00ff9c;
+    color:black;
+    text-decoration:none;
+    font-weight:bold;
+    letter-spacing:.5px;
+
+    box-shadow:0 0 12px rgba(0,255,156,.7);
+    transition:all .25s ease-in-out;
+}
+
+.open-btn:hover{
+    box-shadow:0 0 20px rgba(0,255,156,1);
+    transform:translateY(-1px);
+}
+
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+
+@media(max-width: 900px){
+    .groups-grid{
+        grid-template-columns:repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 600px){
+    .groups-grid{
+        grid-template-columns:1fr;
+    }
+}

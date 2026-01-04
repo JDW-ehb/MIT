@@ -1,0 +1,137 @@
+/* ===========================
+   GLOBAL
+   =========================== */
+
+body{
+    margin:0;
+    padding-top:70px;
+    background:#0f0f0f;
+    color:white;
+    font-family:Arial, sans-serif;
+}
+
+
+/* ===========================
+   WRAPPER
+   =========================== */
+
+.view-wrapper{
+    max-width:900px;
+    margin:40px auto;
+    padding:0 10px;
+}
+
+
+/* ===========================
+   CARD PANEL
+   =========================== */
+
+.card{
+    background:#151515;
+    border:1px solid #333;
+    border-radius:16px;
+    padding:24px;
+
+    box-shadow:0 0 14px rgba(0,0,0,.45);
+    transition:all .25s ease-in-out;
+}
+
+.card:hover{
+    border-color:#4dabff;
+    box-shadow:0 0 12px rgba(77,171,255,.6);
+}
+
+
+/* ===========================
+   HEADER ROW
+   =========================== */
+
+.top-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+
+/* category badge — blue neon */
+.badge{
+    background:rgba(77,171,255,.15);
+    border:1px solid #4dabff;
+
+    color:#4dabff;
+    padding:6px 12px;
+    border-radius:20px;
+
+    font-size:12px;
+    letter-spacing:1px;
+
+    box-shadow:0 0 8px rgba(77,171,255,.5);
+}
+
+
+/* back link — mint accent */
+.back-btn{
+    color:#00ff9c;
+    text-decoration:none;
+    font-weight:bold;
+    letter-spacing:1px;
+
+    opacity:.85;
+    transition:all .25s ease-in-out;
+}
+
+.back-btn:hover{
+    opacity:1;
+    text-shadow:0 0 6px #00ff9c;
+}
+
+
+/* ===========================
+   CONTENT
+   =========================== */
+
+.desc{
+    opacity:.92;
+    margin-top:12px;
+    color:#eaeaea;
+}
+
+
+.meta{
+    margin-top:16px;
+    opacity:.9;
+    font-size:14px;
+}
+
+.meta > div{
+    margin-bottom:6px;
+}
+
+
+/* ===========================
+   OWNERS / USERS
+   =========================== */
+
+.owners{
+    margin-top:18px;
+}
+
+
+/* user pill — blue glow */
+.user{
+    display:inline-block;
+
+    margin-right:8px;
+    padding:6px 10px;
+
+    border-radius:10px;
+
+    background:#1f1f1f;
+    border:1px solid #4dabff;
+    color:#4dabff;
+
+    font-size:13px;
+    letter-spacing:.5px;
+
+    box-shadow:0 0 8px rgba(77,171,255,.5);
+}

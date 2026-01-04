@@ -1,0 +1,178 @@
+/* ===========================
+   GLOBAL
+   =========================== */
+
+body{
+    margin:0;
+    padding-top:70px;
+    background:#0f0f0f;
+    color:white;
+    font-family:Arial, sans-serif;
+}
+
+/* outer content wrapper */
+.sub-wrapper{
+    max-width:1000px;
+    margin:40px auto;
+    padding:0 10px;
+}
+
+/* ===========================
+   HEADER
+   =========================== */
+
+.sub-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.sub-header h1{
+    margin:0;
+    letter-spacing:2px;
+}
+
+/* create button — neon green glow */
+.create-btn{
+    padding:10px 18px;
+    border-radius:12px;
+
+    background:#00ff9c;
+    color:black;
+    font-weight:bold;
+    text-decoration:none;
+
+    box-shadow:0 0 10px rgba(0,255,156,.8);
+    transition:all .25s ease-in-out;
+}
+
+.create-btn:hover{
+    box-shadow:0 0 18px rgba(0,255,156,1);
+    transform:translateY(-1px);
+}
+
+/* ===========================
+   EMPTY STATE
+   =========================== */
+
+.empty{
+    border:1px dashed #333;
+    background:#151515;
+    padding:25px;
+    border-radius:14px;
+    text-align:center;
+    opacity:.85;
+}
+
+/* ===========================
+   GRID
+   =========================== */
+
+.subs-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:22px;
+}
+
+/* ===========================
+   CARD
+   =========================== */
+
+.sub-card{
+    position:relative;
+    background:#151515;
+    border:1px solid #333;
+    border-radius:14px;
+    padding:18px;
+
+    transition:all .25s ease-in-out;
+}
+
+.sub-card:hover{
+    border-color:#4dabff;
+    box-shadow:0 0 10px rgba(77,171,255,.6);
+    transform:translateY(-2px);
+}
+
+/* top row inside card */
+.sub-card .top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+/* category badge — blue glow like objectives */
+.badge{
+    background:rgba(77,171,255,.15);
+    border:1px solid #4dabff;
+    color:#4dabff;
+
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:12px;
+    letter-spacing:1px;
+
+    box-shadow:0 0 6px rgba(77,171,255,.6);
+}
+
+/* title */
+.sub-card h2{
+    margin:10px 0 6px 0;
+    font-size:20px;
+    letter-spacing:1px;
+}
+
+/* description */
+.desc{
+    opacity:.9;
+    color:#eaeaea;
+}
+
+/* meta row */
+.meta{
+    margin-top:15px;
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    opacity:.85;
+}
+
+/* ===========================
+   EDIT BUTTON — blue neon
+   =========================== */
+
+.edit-btn{
+    margin-top:14px;
+    display:inline-block;
+
+    padding:8px 14px;
+    border-radius:10px;
+
+    background:#1f1f1f;
+    border:1px solid #4dabff;
+    color:#4dabff;
+
+    text-decoration:none;
+    font-weight:bold;
+
+    box-shadow:0 0 10px rgba(77,171,255,.6);
+    transition:all .25s ease-in-out;
+}
+
+.edit-btn:hover{
+    color:white;
+    background:#222;
+    box-shadow:0 0 18px rgba(77,171,255,.9);
+    transform:translateY(-1px);
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+
+@media(max-width: 700px){
+    .subs-grid{
+        grid-template-columns:1fr;
+    }
+}

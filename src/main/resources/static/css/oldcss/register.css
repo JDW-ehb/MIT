@@ -1,0 +1,266 @@
+/* ===========================
+   GLOBAL BASE
+   =========================== */
+
+html, body{
+    margin:0;
+    padding:0;
+    height:100%;
+    background:#0f0f0f;
+    color:white;
+    font-family:Arial, sans-serif;
+}
+
+
+/* ===========================
+   BACKGROUND CANVAS
+   =========================== */
+
+#background{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+}
+
+
+/* ===========================
+   REGISTER CARD
+   =========================== */
+
+.register-container{
+    position:relative;
+    z-index:1;
+
+    width:420px;
+    margin:auto;
+    top:50%;
+    transform:translateY(-50%);
+
+    padding:35px 28px;
+
+    background:#151515e6;
+    border:1px solid #333;
+    border-radius:16px;
+
+    box-shadow:0 0 14px rgba(0,0,0,.55);
+    text-align:center;
+
+    transition:.25s ease-in-out;
+}
+
+.register-container:hover{
+    border-color:#4dabff;
+    box-shadow:0 0 14px rgba(77,171,255,.55);
+}
+
+.register-container h2{
+    margin-bottom:25px;
+    letter-spacing:2px;
+}
+
+
+/* ===========================
+   FLOAT LABEL INPUT GROUP
+   =========================== */
+
+.input-group{
+    position:relative;
+    margin:25px 0;
+}
+
+
+/* text + password fields */
+.input-group input{
+    width:100%;
+    padding:12px;
+    border:none;
+    outline:none;
+
+    background:transparent;
+    border-bottom:2px solid #666;
+    color:white;
+
+    font-size:16px;
+    transition:.25s ease;
+}
+
+.input-group input:focus{
+    border-bottom-color:#00ff9c;
+}
+
+
+/* ===========================
+   COUNTRY SELECT
+   =========================== */
+
+.input-group select{
+    width:100%;
+    padding:12px;
+
+    border:none;
+    outline:none;
+
+    background:transparent;
+    border-bottom:2px solid #666;
+    color:white;
+
+    font-size:16px;
+    cursor:pointer;
+    appearance:none;
+}
+
+.input-group select:focus{
+    border-bottom-color:#00ff9c;
+}
+
+.input-group select option{
+    background:#0f0f0f;
+    color:white;
+}
+
+
+/* dropdown arrow */
+.input-group::after{
+    content:"▾";
+    position:absolute;
+    right:6px;
+    top:50%;
+    transform:translateY(-50%);
+    pointer-events:none;
+    color:#aaa;
+}
+
+
+/* ===========================
+   FLOATING LABEL
+   =========================== */
+
+.input-group label{
+    position:absolute;
+    top:50%;
+    left:0;
+
+    transform:translateY(-50%);
+    pointer-events:none;
+
+    color:#aaa;
+    transition:.3s;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label,
+.input-group select:focus + label,
+.input-group select:not([value=""]) + label{
+    top:-6px;
+    font-size:12px;
+    color:#00ff9c;
+}
+
+
+/* ===========================
+   REGISTER — CYAN HERO BUTTON
+   =========================== */
+
+.register-btn{
+    position:relative;
+    display:inline-block;
+
+    padding:14px 30px;
+    margin-top:18px;
+
+    background:transparent;
+    color:white;
+
+    border:1px solid #4dabff;
+    border-radius:12px;
+
+    text-transform:uppercase;
+    font-weight:bold;
+    letter-spacing:3px;
+    cursor:pointer;
+
+    overflow:hidden;
+    transition:.25s ease-in-out;
+
+    box-shadow:0 0 10px rgba(77,171,255,.45);
+}
+
+.register-btn:hover{
+    background:#4dabff;
+    color:black;
+    box-shadow:0 0 20px rgba(77,171,255,.9);
+    transform:translateY(-1px);
+}
+
+
+/* animated border spans */
+.register-btn span{
+    position:absolute;
+    display:block;
+    background:linear-gradient(90deg, transparent, #4dabff);
+}
+
+
+/* top */
+.register-btn span:nth-child(1){
+    top:0;left:0;width:100%;height:3px;
+    animation:animate1 1s linear infinite;
+}
+
+/* right */
+.register-btn span:nth-child(2){
+    top:-100%;right:0;width:3px;height:100%;
+    animation:animate2 1s linear infinite .25s;
+}
+
+/* bottom */
+.register-btn span:nth-child(3){
+    bottom:0;right:0;width:100%;height:3px;
+    animation:animate3 1s linear infinite .5s;
+}
+
+/* left */
+.register-btn span:nth-child(4){
+    bottom:-100%;left:0;width:3px;height:100%;
+    animation:animate4 1s linear infinite .75s;
+}
+
+
+/* ===========================
+   KEYFRAMES
+   =========================== */
+
+@keyframes animate1{0%{left:-100%}50%,100%{left:100%}}
+@keyframes animate2{0%{top:-100%}50%,100%{top:100%}}
+@keyframes animate3{0%{right:-100%}50%,100%{right:100%}}
+@keyframes animate4{0%{bottom:-100%}50%,100%{bottom:100%}}
+
+
+/* ===========================
+   LOGIN LINK
+   =========================== */
+
+.login-link{
+    margin-top:20px;
+    display:block;
+
+    color:#aaa;
+    text-decoration:none;
+
+    transition:.2s;
+}
+
+.login-link:hover{
+    color:white;
+}
+
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+
+@media(max-width:480px){
+    .register-container{width:90%;}
+}

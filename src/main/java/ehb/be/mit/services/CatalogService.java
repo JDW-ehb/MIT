@@ -2,7 +2,10 @@ package ehb.be.mit.services;
 
 import ehb.be.mit.dto.UserView;
 import ehb.be.mit.models.Objective;
-import ehb.be.mit.repositories.UserRepository;
+import ehb.be.mit.models.Category;
+import ehb.be.mit.models.ObjectiveType;
+import ehb.be.mit.repositories.IUserRepository;
+import ehb.be.mit.repositories.ICategoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -13,10 +16,13 @@ import java.util.stream.Collectors;
 @Service
 public class CatalogService {
 
-    private final UserRepository users;
+    private final IUserRepository users;
+    private final ICategoryRepository categories;
 
-    public CatalogService(UserRepository users) {
+    public CatalogService(IUserRepository users,
+                          ICategoryRepository categories) {
         this.users = users;
+        this.categories = categories;
     }
 
     public List<UserView> loadUsersWithObjectives() {
@@ -30,16 +36,18 @@ public class CatalogService {
                 .flatMap(u ->
                         u.getObjectives()
                                 .stream()
+
+                                .filter(o -> o.getType() == ObjectiveType.MIT)
+
                                 .collect(Collectors.groupingBy(Objective::getCreatedAt))
                                 .entrySet()
                                 .stream()
                                 .map(entry -> {
-
                                     LocalDate date = entry.getKey();
 
                                     var objs = entry.getValue()
                                             .stream()
-                                            .limit(3)
+                                            .limit(3)   // still capped at 3
                                             .toList();
 
                                     boolean isToday = date.equals(today);
@@ -50,7 +58,6 @@ public class CatalogService {
                                                             ? date.format(sameYear)
                                                             : date.format(otherYear);
 
-                                    // 👇 fallback avatar if missing
                                     String avatar =
                                             (u.getProfileImage() == null || u.getProfileImage().isBlank())
                                                     ? "/images/avatars/default.png"
@@ -66,5 +73,10 @@ public class CatalogService {
                                 })
                 )
                 .toList();
+
+    }
+
+    public List<Category> loadAllCategories() {
+        return categories.findAll();
     }
 }

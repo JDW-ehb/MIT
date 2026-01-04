@@ -15,143 +15,127 @@ public class DataSeeder {
 
     @Bean
     CommandLineRunner seedData(
-            UserRepository users,
-            ObjectiveRepository objectives,
-            CategoryRepository categories,
-            AuditLogRepository logs,
+            IUserRepository users,
+            IObjectiveRepository objectives,
+            ICategoryRepository categories,
+            IAuditLogRepository logs,
             PasswordEncoder encoder
     ) {
         return args -> {
 
             if (users.count() > 0) return;
 
-            var work = categories.save(new Category("Work"));
+            // ---------- CATEGORIES ----------
+            var work   = categories.save(new Category("Work"));
             var health = categories.save(new Category("Health"));
-            var study = categories.save(new Category("Study"));
+            var study  = categories.save(new Category("Study"));
 
             var today = LocalDate.now();
             var yesterday = today.minusDays(1);
             var lastWeek = today.minusWeeks(1);
             var lastYear = today.minusYears(1);
 
-            // ---- USERS ----
-            var neo = new User();
-            neo.setUsername("neo");
-            neo.setEmail("neo@matrix.io");
-            neo.setPasswordHash(encoder.encode("password"));
-            neo.setRole("USER");
-            neo.setCountry("BE");
+            // ---------- USERS ----------
+            var alex = new User();
+            alex.setUsername("alex");
+            alex.setEmail("alex@demo-app.com");
+            alex.setPasswordHash(encoder.encode("password"));
+            alex.setRole("USER");
+            alex.setCountry("BE");
 
-            var trinity = new User();
-            trinity.setUsername("trinity");
-            trinity.setEmail("trinity@matrix.io");
-            trinity.setPasswordHash(encoder.encode("password"));
-            trinity.setRole("USER");
-            trinity.setCountry("FR");
+            var maria = new User();
+            maria.setUsername("maria");
+            maria.setEmail("maria@demo-app.com");
+            maria.setPasswordHash(encoder.encode("password"));
+            maria.setRole("USER");
+            maria.setCountry("NL");
 
-            var morpheus = new User();
-            morpheus.setUsername("morpheus");
-            morpheus.setEmail("morpheus@matrix.io");
-            morpheus.setPasswordHash(encoder.encode("password"));
-            morpheus.setRole("USER");
-            morpheus.setCountry("NL");
+            var daniel = new User();
+            daniel.setUsername("daniel");
+            daniel.setEmail("daniel@demo-app.com");
+            daniel.setPasswordHash(encoder.encode("password"));
+            daniel.setRole("USER");
+            daniel.setCountry("FR");
 
-            var smith = new User();
-            smith.setUsername("smith");
-            smith.setEmail("smith@matrix.io");
-            smith.setPasswordHash(encoder.encode("password"));
-            smith.setRole("USER");
-            smith.setCountry("US");
+            var sophie = new User();
+            sophie.setUsername("sophie");
+            sophie.setEmail("sophie@demo-app.com");
+            sophie.setPasswordHash(encoder.encode("password"));
+            sophie.setRole("USER");
+            sophie.setCountry("DE");
 
-            var oracle = new User();
-            oracle.setUsername("oracle");
-            oracle.setEmail("oracle@matrix.io");
-            oracle.setPasswordHash(encoder.encode("password"));
-            oracle.setRole("USER");
-            oracle.setCountry("GR");
+            var liam = new User();
+            liam.setUsername("liam");
+            liam.setEmail("liam@demo-app.com");
+            liam.setPasswordHash(encoder.encode("password"));
+            liam.setRole("USER");
+            liam.setCountry("US");
 
-            // Persist empty users first (so they have IDs)
-            users.saveAll(List.of(neo, trinity, morpheus, smith, oracle));
+            users.saveAll(List.of(alex, maria, daniel, sophie, liam));
 
+            // ---------- MIT HELPER ----------
+            java.util.function.Function<Object[], Objective> mit = arr -> {
+                var o = new Objective(
+                        (String) arr[0],
+                        (String) arr[1],
+                        (ObjectiveStatus) arr[2],
+                        (LocalDate) arr[3]
+                );
+                o.setCreatedAt((LocalDate) arr[4]);
+                o.setType(ObjectiveType.MIT);
+                return o;
+            };
 
-            // ---- OBJECTIVES ----
-            var n1 = new Objective("Learn Spring Boot","Finish backend app",
-                    ObjectiveStatus.IN_PROGRESS, today.plusDays(3));
-            n1.setCreatedAt(today);
+            // ---------- OBJECTIVES ----------
+            var n1 = mit.apply(new Object[]{"Prepare exam notes","Summarise chapters for Computer Science exam", ObjectiveStatus.IN_PROGRESS, today.plusDays(3), today});
+            var n2 = mit.apply(new Object[]{"Workout session","Strength & cardio training", ObjectiveStatus.TODO, today.plusDays(1), today});
+            var n3 = mit.apply(new Object[]{"Weekly planning","Organise tasks and priorities", ObjectiveStatus.TODO, today.plusDays(2), today});
 
-            var n2 = new Objective("Go to the gym","Leg day 🦵",
-                    ObjectiveStatus.TODO, today.plusDays(1));
-            n2.setCreatedAt(today);
+            var t1 = mit.apply(new Object[]{"Fix backend issue","Investigate API timeout errors", ObjectiveStatus.DONE, yesterday.plusDays(2), yesterday});
+            var t2 = mit.apply(new Object[]{"Prepare presentation","Slides for project review meeting", ObjectiveStatus.IN_PROGRESS, yesterday.plusDays(1), yesterday});
+            var t3 = mit.apply(new Object[]{"Code cleanup","Refactor and simplify service layer", ObjectiveStatus.TODO, yesterday.plusDays(3), yesterday});
 
-            var n3 = new Objective("Buy coffee","Fuel the code",
-                    ObjectiveStatus.TODO, today.plusDays(2));
-            n3.setCreatedAt(today);
+            var t4 = mit.apply(new Object[]{"Database review","Check indexes and slow queries", ObjectiveStatus.DONE, lastWeek.plusDays(2), lastWeek});
+            var t5 = mit.apply(new Object[]{"Study networking","Revise routing and security concepts", ObjectiveStatus.IN_PROGRESS, lastWeek.plusDays(3), lastWeek});
+            var t6 = mit.apply(new Object[]{"Go for a run","5km light run", ObjectiveStatus.TODO, lastWeek.plusDays(1), lastWeek});
 
-            // TRINITY — YESTERDAY
-            var t1 = new Objective("Patch vulnerabilities", "Security matters",
-                    ObjectiveStatus.DONE, yesterday.plusDays(2));
-            t1.setCreatedAt(yesterday);
+            var m1 = mit.apply(new Object[]{"Project research","Review documentation & architecture notes", ObjectiveStatus.IN_PROGRESS, today.plusWeeks(2), today});
+            var m2 = mit.apply(new Object[]{"Team sync-up","Prepare points for meeting", ObjectiveStatus.DONE, today.plusWeeks(1), today});
+            var m3 = mit.apply(new Object[]{"Read article","Cloud infrastructure best practices", ObjectiveStatus.TODO, today.plusDays(5), today});
 
-            var t2 = new Objective("Coffee refill", "Again ☕",
-                    ObjectiveStatus.IN_PROGRESS, yesterday.plusDays(1));
-            t2.setCreatedAt(yesterday);
+            var s1 = mit.apply(new Object[]{"Patch dependencies","Update outdated libraries", ObjectiveStatus.TODO, today.plusWeeks(1), today});
+            var s2 = mit.apply(new Object[]{"Review test coverage","Identify missing unit tests", ObjectiveStatus.IN_PROGRESS, today.plusDays(4), today});
+            var s3 = mit.apply(new Object[]{"Workspace cleanup","Organise files and folders", ObjectiveStatus.DONE, today.plusDays(2), today});
 
-            var t3 = new Objective("Debug production", "🔥",
-                    ObjectiveStatus.TODO, yesterday.plusDays(3));
-            t3.setCreatedAt(yesterday);
+            var o1 = mit.apply(new Object[]{"Cook dinner","Prepare a healthy meal", ObjectiveStatus.DONE, lastYear.plusDays(2), lastYear});
+            var o2 = mit.apply(new Object[]{"Mentoring session","Help a classmate understand a project topic", ObjectiveStatus.IN_PROGRESS, lastYear.plusWeeks(2), lastYear});
+            var o3 = mit.apply(new Object[]{"Study schedule","Plan study blocks for next semester", ObjectiveStatus.TODO, lastYear.plusWeeks(1), lastYear});
 
-            // TRINITY — LAST WEEK
-            var t4 = new Objective("Network audit", "Deep dive",
-                    ObjectiveStatus.DONE, lastWeek.plusDays(2));
-            t4.setCreatedAt(lastWeek);
+            // ---------- ASSIGN CATEGORIES BEFORE SAVE ----------
+            n1.setCategory(study);
+            n2.setCategory(health);
+            n3.setCategory(work);
 
-            var t5 = new Objective("Code review", "Be kind",
-                    ObjectiveStatus.IN_PROGRESS, lastWeek.plusDays(3));
-            t5.setCreatedAt(lastWeek);
+            t1.setCategory(work);
+            t2.setCategory(work);
+            t3.setCategory(work);
+            t4.setCategory(work);
+            t5.setCategory(study);
+            t6.setCategory(health);
 
-            var t6 = new Objective("Yoga", "Stretch stress away",
-                    ObjectiveStatus.TODO, lastWeek.plusDays(1));
-            t6.setCreatedAt(lastWeek);
+            m1.setCategory(work);
+            m2.setCategory(work);
+            m3.setCategory(study);
 
-            // MORPHEUS — TODAY
-            var m1 = new Objective("Find The One", "Search continues",
-                    ObjectiveStatus.IN_PROGRESS, today.plusWeeks(2));
-            m1.setCreatedAt(today);
+            s1.setCategory(work);
+            s2.setCategory(work);
+            s3.setCategory(health);
 
-            var m2 = new Objective("Teach Kung Fu", "Woah",
-                    ObjectiveStatus.DONE, today.plusWeeks(1));
-            m2.setCreatedAt(today);
+            o1.setCategory(health);
+            o2.setCategory(work);
+            o3.setCategory(study);
 
-            var m3 = new Objective("Meditate", "Clear mind",
-                    ObjectiveStatus.TODO, today.plusDays(5));
-            m3.setCreatedAt(today);
-
-            // SMITH — TODAY
-            var s1 = new Objective("Eliminate anomalies", "Order must be restored",
-                    ObjectiveStatus.TODO, today.plusWeeks(1));
-            s1.setCreatedAt(today);
-
-            var s2 = new Objective("Upgrade Agent AI", "Efficiency programs",
-                    ObjectiveStatus.IN_PROGRESS, today.plusDays(4));
-            s2.setCreatedAt(today);
-
-            var s3 = new Objective("Practice monologues", "Mr. Anderson…",
-                    ObjectiveStatus.DONE, today.plusDays(2));
-            s3.setCreatedAt(today);
-
-            // ORACLE — LAST YEAR
-            var o1 = new Objective("Bake cookies", "They already will be",
-                    ObjectiveStatus.DONE, lastYear.plusDays(2));
-            o1.setCreatedAt(lastYear);
-
-            var o2 = new Objective("Guide The One", "But gently",
-                    ObjectiveStatus.IN_PROGRESS, lastYear.plusWeeks(2));
-            o2.setCreatedAt(lastYear);
-
-            var o3 = new Objective("Water plants", "Even prophecies need oxygen",
-                    ObjectiveStatus.TODO, lastYear.plusWeeks(1));
-            o3.setCreatedAt(lastYear);
-
+            // ---------- SAVE OBJECTIVES ----------
             objectives.saveAll(List.of(
                     n1,n2,n3,
                     t1,t2,t3,t4,t5,t6,
@@ -160,39 +144,23 @@ public class DataSeeder {
                     o1,o2,o3
             ));
 
-            // (no saveAll yet — key difference!)
+            // ---------- ASSIGN OWNERS ----------
+            alex.addObjective(n1); alex.addObjective(n2); alex.addObjective(n3);
 
-            // ---- RELATIONSHIPS ----
-            neo.addObjective(n1);
-            neo.addObjective(n2);
-            neo.addObjective(n3);
+            maria.addObjective(t1); maria.addObjective(t2); maria.addObjective(t3);
+            maria.addObjective(t4); maria.addObjective(t5); maria.addObjective(t6);
 
-            trinity.addObjective(t1);
-            trinity.addObjective(t2);
-            trinity.addObjective(t3);
-            trinity.addObjective(t4);
-            trinity.addObjective(t5);
-            trinity.addObjective(t6);
+            daniel.addObjective(m1); daniel.addObjective(m2); daniel.addObjective(m3);
 
-            morpheus.addObjective(m1);
-            morpheus.addObjective(m2);
-            morpheus.addObjective(m3);
+            sophie.addObjective(s1); sophie.addObjective(s2); sophie.addObjective(s3);
 
-            smith.addObjective(s1);
-            smith.addObjective(s2);
-            smith.addObjective(s3);
+            liam.addObjective(o1); liam.addObjective(o2); liam.addObjective(o3);
 
-            oracle.addObjective(o1);
-            oracle.addObjective(o2);
-            oracle.addObjective(o3);
+            users.saveAll(List.of(alex, maria, daniel, sophie, liam));
 
-            // ---- SAVE USERS AGAIN (cascade writes objectives) ----
-            users.saveAll(List.of(neo, trinity, morpheus, smith, oracle));
+            logs.save(new AuditLog("Seeded demo data", alex));
 
-            logs.save(new AuditLog("Seeded demo data", neo));
-
-            System.out.println("🌱 Demo data seeded");
+            System.out.println("🌱 Demo data seeded — professional dataset created");
         };
     }
-
 }

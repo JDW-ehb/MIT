@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Not Found</title>
+    <link rel="stylesheet" href="/css/oldcss/header.css">
+    <link rel="stylesheet" href="/css/error-theme.css">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/header :: mainHeader}"></div>
+
+<div th:replace="~{fragments/header :: mainHeader}"></div>
+
+<div class="page">
+    <div class="card">
+        <h1>404 — Page Not Found</h1>
+
+        <p class="subtle">
+            Sorry for the inconvenience but the page you requested is unavailable
+        </p>
+
+        <a class="button" href="/catalog">Return to Catalog</a>
+    </div>
+</div>
+
+
+</body>
+</html>

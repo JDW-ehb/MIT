@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>MIT Catalog</title>
-    <link rel="stylesheet" href="/css/catalog.css">
-    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/oldcss/catalog.css">
+    <link rel="stylesheet" href="/css/oldcss/header.css">
 
 </head>
 
@@ -38,6 +38,16 @@
         <input id="dateFilter"
                type="date"
                class="filter">
+
+        <select id="categoryFilter" class="filter">
+            <option value="">Filter by category…</option>
+
+            <option th:each="c : ${categories}"
+                    th:value="${c.name}"
+                    th:text="${c.name}">
+            </option>
+        </select>
+
 
     </div>
 
@@ -86,7 +96,10 @@
 
             <!-- OBJECTIVES LIST -->
             <div class="objective"
-                 th:each="obj : ${user.objectives}">
+                 th:each="obj : ${user.objectives}"
+                 th:data-status="${obj.status}"
+                 th:data-date="${obj.createdAt}"
+                 th:data-category="${obj.category != null ? obj.category.name : ''}">
                 <span th:text="${obj.title}"></span>
             </div>
 

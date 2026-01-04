@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${group.name}">Group</title>
+
+    <link rel="stylesheet" href="/css/oldcss/header.css">
+    <link rel="stylesheet" href="/css/oldcss/groupview.css">
+</head>
+
+<body>
+
+<div th:replace="~{fragments/header :: mainHeader}"></div>
+
+<div class="group-container">
+
+    <div class="group-header">
+
+        <div>
+            <h1 th:text="${group.name}">GROUP NAME</h1>
+            <p class="short" th:text="${group.shortDescription}">
+                Short description here
+            </p>
+        </div>
+
+        <a class="edit-btn"
+           th:if="${#authentication.name == group.owner.username}"
+           th:href="@{/groups/{id}/edit(id=${group.id})}">
+            Edit Group
+        </a>
+
+
+        <div class="owner-box">
+            <span>Owner:</span>
+            <strong th:text="${group.owner.username}">Neo</strong>
+        </div>
+
+    </div>
+
+
+    <div class="group-description">
+        <p th:text="${group.description}">
+            Long description here…
+        </p>
+    </div>
+
+
+    <h2>Objectives in this group</h2>
+
+    <div class="objective-list"
+         th:if="${#lists.isEmpty(objectives)}">
+        <p class="empty">No objectives yet.</p>
+    </div>
+
+    <div class="objective-list"
+         th:if="${!#lists.isEmpty(objectives)}">
+
+        <div class="objective-card"
+             th:each="obj : ${objectives}">
+            <div>
+                <h3 th:text="${obj.title}">Objective title</h3>
+                <p th:text="${obj.description}">Description…</p>
+            </div>
+
+            <span class="status" th:text="${obj.status}">
+                STATUS
+            </span>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

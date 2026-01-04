@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Sub Objective</title>
+    <link rel="stylesheet" href="/css/oldcss/header.css">
+    <link rel="stylesheet" href="/css/oldcss/subcreate.css">
+</head>
+
+<body>
+
+<div th:replace="~{fragments/header :: mainHeader}"></div>
+
+<div class="create-wrapper">
+
+    <h1>Create Sub-Objective</h1>
+
+    <form th:action="@{/subobjectives/create}"
+          th:object="${objective}"
+          method="post">
+
+        <label>Title</label>
+        <input th:field="*{title}" required maxlength="100"/>
+
+        <label>Description</label>
+        <textarea th:field="*{description}" maxlength="500"></textarea>
+
+        <label>Deadline</label>
+        <input type="date" th:field="*{deadline}" required/>
+
+        <label>Assign to Group (optional)</label>
+        <select name="groupId">
+            <option value="">None</option>
+            <option th:each="g : ${myGroups}"
+                    th:value="${g.id}"
+                    th:text="${g.name}">
+            </option>
+        </select>
+
+        <label>Category</label>
+        <select class="input" name="categoryId">
+            <option value="">None</option>
+            <option th:each="c : ${allCategories}"
+                    th:value="${c.id}"
+                    th:text="${c.name}">
+            </option>
+        </select>
+
+        <label>Create New Category (optional)</label>
+        <input class="input"
+               name="newCategory"
+               placeholder="e.g. Project, Fitness, Study">
+
+        <button type="submit">Create</button>
+
+    </form>
+
+
+</div>
+
+</body>
+</html>
