@@ -22,8 +22,8 @@ public class CatalogService {
     public List<UserView> loadUsersWithObjectives() {
 
         var today = LocalDate.now();
-        DateTimeFormatter sameYear = DateTimeFormatter.ofPattern("MMM d");
-        DateTimeFormatter otherYear = DateTimeFormatter.ofPattern("MMM d yyyy");
+        var sameYear = DateTimeFormatter.ofPattern("MMM d");
+        var otherYear = DateTimeFormatter.ofPattern("MMM d yyyy");
 
         return users.findAll()
                 .stream()
@@ -36,6 +36,7 @@ public class CatalogService {
                                 .map(entry -> {
 
                                     LocalDate date = entry.getKey();
+
                                     var objs = entry.getValue()
                                             .stream()
                                             .limit(3)
@@ -49,16 +50,21 @@ public class CatalogService {
                                                             ? date.format(sameYear)
                                                             : date.format(otherYear);
 
+                                    // 👇 fallback avatar if missing
+                                    String avatar =
+                                            (u.getProfileImage() == null || u.getProfileImage().isBlank())
+                                                    ? "/images/avatars/default.png"
+                                                    : u.getProfileImage();
+
                                     return new UserView(
                                             u.getUsername(),
                                             objs,
                                             label,
-                                            isToday
+                                            isToday,
+                                            avatar
                                     );
                                 })
                 )
                 .toList();
     }
-
-
 }

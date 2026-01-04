@@ -8,5 +8,6 @@ public record UserView(
         String username,
         List<Objective> objectives,
         String dateLabel,
-        boolean today
+        boolean today,
+        String profileImage
 ) {}

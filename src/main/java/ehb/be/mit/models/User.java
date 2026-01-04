@@ -1,10 +1,7 @@
 package ehb.be.mit.models;
 
 import jakarta.persistence.*;
-import org.antlr.v4.runtime.misc.NotNull;
-
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -26,12 +23,23 @@ public class User {
     private String passwordHash;
 
     @Column(nullable = false)
-    private String role;  // USER / ADMIN later
+    private String role;   // USER / ADMIN
 
-    // --- NEW FIELD ---
+    // --- OPTIONAL PROFILE FIELDS ---
+
     @Column(length = 2)
-    private String country;   // ISO-2 like "BE", "FR", "NL"
+    private String country;   // ISO-2 — BE / FR / NL ...
 
+    @Column(length = 300)
+    private String bio;
+
+    @Column(length = 255)
+    private String profileImage;   // store filename OR URL
+
+
+    // --- RELATIONSHIPS ---
+
+    // USER ↔ OBJECTIVE (existing)
     @ManyToMany
     @JoinTable(
             name = "user_objectives",
@@ -39,6 +47,17 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "objective_id")
     )
     private Set<Objective> objectives = new HashSet<>();
+
+
+    // USER ↔ GROUP (new)
+    @ManyToMany
+    @JoinTable(
+            name = "user_group_objectives",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id")
+    )
+    private Set<Group> groups = new HashSet<>();
+
 
     public User() {}
 
@@ -49,7 +68,9 @@ public class User {
         this.role = role;
     }
 
-    // relationship helpers
+
+    // --- RELATIONSHIP HELPERS ---
+
     public void addObjective(Objective objective) {
         objectives.add(objective);
         objective.getUsers().add(this);
@@ -60,7 +81,18 @@ public class User {
         objective.getUsers().remove(this);
     }
 
-    // getters & setters
+    public void joinGroup(Group group){
+        groups.add(group);
+        group.getMembers().add(this);
+    }
+
+    public void leaveGroup(Group group){
+        groups.remove(group);
+        group.getMembers().remove(this);
+    }
+
+
+    // --- GETTERS & SETTERS ---
 
     public UUID getId() { return id; }
 
@@ -79,7 +111,16 @@ public class User {
     public String getCountry() { return country; }
     public void setCountry(String country) { this.country = country; }
 
+    public String getBio() { return bio; }
+    public void setBio(String bio) { this.bio = bio; }
+
+
+    public String getProfileImage() {return profileImage;}
+    public void setProfileImage(String profileImage) {this.profileImage = profileImage;}
+
     public Set<Objective> getObjectives() { return objectives; }
     public void setObjectives(Set<Objective> objectives) { this.objectives = objectives; }
-}
 
+    public Set<Group> getGroups() { return groups; }
+    public void setGroups(Set<Group> groups) { this.groups = groups; }
+}

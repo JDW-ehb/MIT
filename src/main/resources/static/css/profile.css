@@ -1,0 +1,29 @@
+body{
+    background:#0f0f0f;
+    color:white;
+    font-family: Arial;
+}
+
+.profile-card{
+    max-width:600px;
+    margin:40px auto;
+    padding:25px;
+    background:#151515;
+    border-radius:12px;
+    border:1px solid #333;
+    text-align:center;
+}
+
+.avatar{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid #333;
+}
+
+
+.section{
+    margin-top:20px;
+    text-align:left;
+}

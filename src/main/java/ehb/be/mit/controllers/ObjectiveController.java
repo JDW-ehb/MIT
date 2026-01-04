@@ -118,6 +118,55 @@ public class ObjectiveController {
         return "edit";
     }
 
+    @GetMapping("/{id}/view")
+    public String viewDay(
+            @PathVariable UUID id,
+            Model model
+    ){
+        var clicked = objectives.getById(id);
+
+
+        var owner = clicked.getUsers().stream().findFirst()
+                .orElseThrow();
+
+        var date = clicked.getCreatedAt();
+
+        var allThatDay =
+                objectives.getAllForUserAndDate(owner.getId(), date);
+
+        model.addAttribute("date", date);
+        model.addAttribute("username", owner.getUsername());
+        model.addAttribute("objectives", allThatDay);
+
+        return "view";
+    }
+
+    @GetMapping("/edit")
+    public String editToday(Principal principal){
+
+        var user = users.findByUsername(principal.getName())
+                .orElseThrow();
+
+        // Get today's date
+        var today = LocalDate.now();
+
+        // Fetch ALL objectives for today
+        var todaysObjectives =
+                objectives.getAllForUserAndDate(user.getId(), today);
+
+        if(todaysObjectives.isEmpty()){
+            return "redirect:/catalog?noObjectives";
+        }
+
+        // Just grab one id — your edit page loads the whole day anyway
+        var first = todaysObjectives.get(0);
+
+        return "redirect:/objectives/" + first.getId() + "/edit";
+    }
+
+
+
+
 
 
     @PostMapping("/update")

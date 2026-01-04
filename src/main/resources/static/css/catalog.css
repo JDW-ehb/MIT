@@ -28,11 +28,25 @@ h1 {
 }
 
 
-/* cute stickman substitute */
+/* avatar */
 .avatar {
-    font-size: 40px;
-    text-align: center;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto;
+    border: 2px solid #0f0f0f;
 }
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 
 .username {
     text-align: center;
@@ -68,6 +82,20 @@ h1 {
     transition: all .25s ease-in-out;
 }
 
+.objective a{
+    margin-left:8px;
+    text-decoration:none;
+}
+
+.view-date{
+    opacity:0.7;
+}
+
+.view-date:hover{
+    opacity:1;
+}
+
+
 
 
 .objective:hover {
@@ -99,11 +127,32 @@ h1 {
 
 .date-row{
     display:flex;
+    justify-content:space-between;
     align-items:center;
-    gap:10px;
-    position:relative;
+    margin-bottom:10px;
 }
 
+
+.controls{
+    position:absolute;
+    top:10px;
+    right:12px;
+
+    display:flex;
+    gap:15px;
+}
+
+.controls a{
+    color:#bbb;
+    text-decoration:none;
+    font-size:0.9rem;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.controls a:hover{
+    color:white;
+}
 
 
 

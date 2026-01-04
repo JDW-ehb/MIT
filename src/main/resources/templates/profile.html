@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${user.username} + ' — Profile'"></title>
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+
+<body>
+
+<div class="profile-card">
+
+    <img th:src="${#strings.isEmpty(user.profileImage)
+        ? '/images/avatars/default.png'
+        : user.profileImage}"
+         class="avatar">
+
+
+    <h2 th:text="${user.username}"></h2>
+
+    <p class="bio"
+       th:text="${user.bio != null ? user.bio : 'No bio yet…'}"></p>
+
+
+    <div class="section">
+        <h3>Groups</h3>
+
+        <div th:if="${#lists.isEmpty(user.groups)}">
+            Not a member of any groups.
+        </div>
+
+        <ul>
+            <li th:each="g : ${user.groups}">
+                <a th:href="@{'/groups/' + ${g.id}}"
+                   th:text="${g.name}"></a>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="section">
+        <h3>Recent Objectives</h3>
+
+        <ul>
+            <li th:each="o : ${user.objectives}">
+                <span th:text="${o.title}"></span>
+            </li>
+        </ul>
+    </div>
+
+
+    <div th:if="${isOwner}" class="actions">
+        <a href="/profile/edit" class="btn blue">Edit Profile</a>
+    </div>
+
+</div>
+
+</body>
+</html>

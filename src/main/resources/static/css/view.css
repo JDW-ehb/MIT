@@ -35,8 +35,9 @@ body{
     z-index:1;
 
     display:flex;
-    justify-content:center;
-    gap:40px;
+    flex-direction:column;
+    align-items:center;
+    gap:30px;
 
     margin-top:60px;
     padding-bottom:60px;
@@ -267,25 +268,3 @@ textarea.input{
     gap:40px;
 }
 
-/* ================================
-   RED DANGER / CANCEL BUTTON
-   ================================ */
-
-.red{
-    color:#ff4d4d;   /* neon-ish red text */
-}
-
-.red:hover{
-    background:#ff4d4d;
-    color:black;
-    box-shadow:
-            0 0 5px #ff4d4d,
-            0 0 25px #ff4d4d,
-            0 0 50px #ff4d4d,
-            0 0 200px #ff4d4d;
-}
-
-/* red animated edge */
-.red span{
-    background: linear-gradient(90deg, transparent, #ff4d4d);
-}

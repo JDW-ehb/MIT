@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View MITs</title>
+    <link rel="stylesheet" href="/css/view.css">
+</head>
+
+<body>
+
+<canvas id="background"></canvas>
+
+<h1 class="page-title">
+    MITs for <span th:text="${date}"></span>
+</h1>
+
+<div class="mit-wrapper">
+
+    <div class="cards-row">
+
+        <div th:each="obj : ${objectives}" class="mit-card">
+
+            <h2 th:text="${obj.title}"></h2>
+
+            <p class="input"
+               style="min-height:260px; text-align:left;">
+                <span th:text="${obj.description}"></span>
+            </p>
+
+            <div class="input">
+                Deadline:
+                <span th:text="${obj.deadline}"></span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="actions">
+        <a href="/catalog" class="btn blue">
+            Back
+            <span></span><span></span><span></span><span></span>
+        </a>
+    </div>
+
+</div>
+
+<script src="/js/background.js"></script>
+
+</body>
+</html>

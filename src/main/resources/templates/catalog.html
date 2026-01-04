@@ -68,34 +68,44 @@
 
         <div class="user-card" th:each="user : ${users}">
 
-            <div class="date-row">
-
-                <div class="date-badge"
-                     th:classappend="${user.today} ? ' today'">
-                    <span th:text="${user.dateLabel}">Today</span>
-                </div>
-
+            <!-- DATE BADGE (absolute left) -->
+            <div class="date-badge"
+                 th:classappend="${user.today} ? ' today'">
+                <span th:text="${user.dateLabel}">Today</span>
             </div>
 
+            <!-- TOP-RIGHT CONTROLS (absolute right) -->
+            <div class="controls">
 
-            <div class="avatar">👤</div>
+                <a th:if="${#lists.size(user.objectives) > 0}"
+                   th:href="@{/objectives/{id}/view(id=${user.objectives[0].id})}">
+                    View
+                </a>
 
-            <div class="username" th:text="${user.username}">Username</div>
-
-            <div class="objective"
-                 th:each="obj,iterStat : ${user.objectives}">
-
-                <span th:text="${obj.title}"></span>
-
-                <a class="edit-date"
-                   th:if="${iterStat.index == 0 and user.username == me}"
-                   th:href="@{/objectives/{id}/edit(id=${obj.id})}">
-                    ✏️
+                <a th:if="${user.username == me and #lists.size(user.objectives) > 0}"
+                   th:href="@{/objectives/{id}/edit(id=${user.objectives[0].id})}">
+                    Edit
                 </a>
 
             </div>
 
+
+
+            <div class="avatar">
+                <img class="avatar" th:src="${user.profileImage}">
+            </div>
+
+            <div class="username" th:text="${user.username}">Username</div>
+
+
+            <!-- OBJECTIVES LIST -->
+            <div class="objective"
+                 th:each="obj : ${user.objectives}">
+                <span th:text="${obj.title}"></span>
+            </div>
+
         </div>
+
 
 
     </div>
