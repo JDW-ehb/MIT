@@ -31,13 +31,13 @@ Public Objectives Catalog
 
 The application provides a catalog-style list of user objectives. Users can:
 
-Browse public objectives
+Browse publicly visible objectives
 
 View objectives per user
 
 Explore tasks grouped by category or type
 
-Open user profiles to see additional information and public goals
+Open user profiles to see public information and objectives
 
 This enables a community-driven layer of shared productivity.
 
@@ -63,11 +63,11 @@ Category
 
 User
 
-Objective type
+Type
 
 Group association
 
-This makes the catalog usable at scale.
+This ensures the catalog remains usable as it grows.
 
 Security and Authentication
 
@@ -75,13 +75,13 @@ The system implements:
 
 Secure login and registration
 
-Password hashing via BCrypt
+Password hashing using BCrypt
 
-Session-secured areas requiring authentication
+Authentication-protected areas
 
-Configurable session timeout within Spring Security
+Configurable session timeout
 
-User accounts and sensitive areas of the application are protected by default.
+User accounts and sensitive areas are protected by default.
 
 Technology Stack
 
@@ -95,99 +95,89 @@ Spring Data JPA
 
 Thymeleaf
 
-MySQL (or compatible relational database)
+MySQL (or compatible database)
 
 HTML / CSS / JavaScript
 
-The overall architecture follows the MVC pattern.
+The application follows the MVC architectural pattern.
 
 Missing / Planned Features
 
-Two key features are intentionally not yet implemented. These are considered future improvements.
+Two important features are not yet implemented but are planned for future versions.
 
 1. Public / Private Visibility Controls
 
-Planned functionality will allow users to choose which objectives and profile elements are visible. Intended settings include:
+Planned functionality will allow users to control the visibility of objectives and profile elements, including options such as:
 
-Public visibility
+Public
 
-Contacts / group-only visibility
+Contacts / group-only
 
-Private objectives
+Private
 
 Current state:
 
-Objectives shown in the catalog do not yet support granular visibility levels.
+Objectives shown in the catalog do not yet support granular privacy control.
 
-This feature will enable better privacy management and professional use-cases.
+This will improve privacy and selective sharing.
 
 2. Profile Editing
 
-Planned functionality:
+Planned functionality includes:
 
-Modify profile information
+Editing profile information
 
-Update profile images
+Updating profile images
 
-Edit country and biography fields
+Modifying country and biography
 
 Current state:
 
-Profile data cannot be edited after account creation
+Profiles cannot be edited after account creation.
 
-This will allow users to maintain an evolving and accurate public identity.
+This will allow users to maintain accurate and up-to-date profiles.
 
 Running the Application
 
-To run the project in development:
+To run the project in development mode:
 
 mvn spring-boot:run
 
 
-Default routes include:
+Primary routes include:
 
 /login
 /register
 /catalog
 
 
-A valid account is required to access authenticated sections.
+Authenticated access is required for protected views.
 
 Purpose and Direction
 
-This platform is intended for individuals and teams who value:
+This platform is intended for users and teams who value:
 
 Structured focus
 
-Realistic goal-setting
+Realistic planning
 
-Consistency over intensity
+Sustainable progress
 
-Light social accountability
+Accountability through visibility
 
-A clean and distraction-free workflow
+A clean, non-intrusive workflow
 
-The application prioritizes clarity, intentionality, and measured progress rather than volume-driven productivity.
+The goal is to support consistent, meaningful work, not task overload.
 
 Author
 
 MIT Productivity Platform
 Developed by Jimmy De Wit
 
-Future Roadmap (Non-Exhaustive)
+AI Assistance and Credits
 
-Planned or possible developments include:
+Part of the design guidance, documentation writing, UI styling consistency review, and general development support for this project was assisted using ChatGPT (OpenAI).
 
-Profile editing
+Relevant discussion and collaboration references:
 
-Objective privacy controls
-
-Analytics and reporting
-
-Group enhancements
-
-Notifications
-
-Extended filtering and browsing tools
-
-The application is designed to grow iteratively while maintaining simplicity.
+https://chatgpt.com/share/6957fb15-bf40-8005-bc95-18fcb1
