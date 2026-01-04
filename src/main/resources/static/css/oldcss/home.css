@@ -55,7 +55,7 @@ html, body {
     background: #ffffff;
     color: #000000;
     box-shadow: 0 0 5px #fff, 0 0 25px #fff, 0 0 50px #fff, 0 0 200px #fff;
-    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+    -webkit-box-reflect: below 1px -webkit-linear-gradient(transparent, #0005);
 }
 
 .playbtn span {
